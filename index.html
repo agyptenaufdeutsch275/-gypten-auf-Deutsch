@@ -65,6 +65,7 @@
     .brand {
       text-align: center;
       margin-bottom: 24px;
+      flex-shrink: 0;
     }
 
     .brand-title {
@@ -92,6 +93,7 @@
     .card {
       width: 100%;
       max-width: 400px;
+      flex-shrink: 0;
       background: linear-gradient(160deg, #5C3818 0%, #3E2208 35%, #4A2C10 65%, #3A1E06 100%);
       border: 2px solid rgba(180, 130, 40, 0.5);
       border-radius: 4px;
@@ -362,8 +364,10 @@
 
     /* ── BOTTOM TEXT ── */
     .page-footer {
-      margin-top: 18px;
+      margin-top: auto;
+      padding-top: 24px;
       text-align: center;
+      flex-shrink: 0;
     }
 
     .page-footer p {
