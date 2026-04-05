@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Ägypten auf Deutsch — Großes Ägyptisches Museum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#2A1A06;--bg2:#1E1204;--stone:#4A2C10;--stone2:#3A2008;--gold:#C8941E;--gold2:#E8B030;--lapis:#1E3A6E;--lapis2:#2A5098;--terra:#8B2810;--cream:#F0E0B8;--text:rgba(240,220,170,0.85);--text2:rgba(240,220,170,0.6);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Crimson Text',serif;background:var(--bg2);color:var(--cream);-webkit-font-smoothing:antialiased;min-height:100vh;opacity:0;transition:opacity .7s;}
+body.ready{opacity:1;}
+
+/* ── HEADER ── */
+.site-header{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:2px solid rgba(180,130,40,0.3);}
+.header-band{height:5px;background:linear-gradient(90deg,#8B2810,#C8941E,#1E3A6E,#E8B030,#1E5C38,#E8B030,#8B2810);}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:8px 24px;gap:12px;}
+.header-brand{font-family:'Cinzel Decorative',cursive;font-size:clamp(1rem,2.5vw,1.3rem);font-weight:700;background:linear-gradient(180deg,#FFE87A,#D4A020,#F0C030);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;}
+.back-btn{display:flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(180,130,40,0.35);color:rgba(200,160,60,0.7);font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;padding:7px 14px;cursor:pointer;transition:all .3s;border-radius:2px;text-decoration:none;}
+.back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.back-arr{transition:transform .3s;}
+.back-btn:hover .back-arr{transform:translateX(-3px);}
+
+/* ── SCARAB HEADER ── */
+.scarab-header{background:var(--bg2);text-align:center;padding:18px 20px 0;}
+.sh-title-main{font-family:'Cinzel Decorative',cursive;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;background:linear-gradient(180deg,#FFE87A 0%,#D4A020 40%,#F5C830 70%,#B07818 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 10px rgba(180,120,0,0.5));}
+
+/* ── HERO ── */
+.hero{position:relative;height:clamp(220px,35vh,380px);overflow:hidden;}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(.65) saturate(1.15);transition:transform 12s ease;}
+.hero img:hover{transform:scale(1.04);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,5,2,0.25) 0%,rgba(10,5,2,0.85) 100%);}
+.hero-content{position:absolute;bottom:0;left:0;right:0;padding:20px 32px 24px;text-align:center;}
+.hero-site-name{font-family:'Cinzel',serif;font-size:clamp(1.3rem,3.5vw,2rem);font-weight:700;color:#FFE890;letter-spacing:0.1em;text-shadow:0 2px 12px rgba(0,0,0,0.8);margin-bottom:6px;}
+.hero-meta{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.3em;color:rgba(200,160,60,0.6);text-transform:uppercase;}
+
+/* ── COLOR BANDS ── */
+.c-band{height:6px;background:linear-gradient(90deg,var(--terra),var(--gold),var(--lapis),var(--gold2),var(--lapis),var(--gold),var(--terra));}
+.c-band.slim{height:4px;}
+
+/* ── CONTENT ── */
+.content{max-width:900px;margin:0 auto;padding:36px 28px 60px;}
+
+/* ── FACTS ── */
+.facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:36px;border:2px solid rgba(160,110,30,0.3);border-top:3px solid var(--gold);overflow:hidden;border-radius:3px;}
+.fact{background:linear-gradient(160deg,var(--stone),var(--stone2));padding:16px 12px;text-align:center;border-right:1px solid rgba(60,30,8,0.5);}
+.fact:last-child{border-right:none;}
+.fact-icon{font-size:1.3rem;display:block;margin-bottom:6px;}
+.fact-label{font-family:'Cinzel',serif;font-size:0.48rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,148,30,0.5);margin-bottom:5px;}
+.fact-val{font-family:'Cinzel',serif;font-size:0.82rem;color:#FFFFFF;font-weight:600;}
+
+/* ── VIDEO ── */
+.video-section{margin-bottom:36px;}
+.section-label{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.4em;text-transform:uppercase;color:rgba(200,148,30,0.55);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(160,110,30,0.35),transparent);}
+.video-frame{border:3px solid rgba(160,110,30,0.55);border-top:none;border-radius:3px;overflow:hidden;background:#0A0600;box-shadow:0 8px 40px rgba(0,0,0,0.7);}
+.video-top-band{height:6px;background:linear-gradient(90deg,var(--gold2),var(--gold),var(--gold2));}
+.video-frame iframe{display:block;width:100%;aspect-ratio:16/9;border:none;}
+.video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(160deg,var(--stone),var(--stone2));position:relative;overflow:hidden;cursor:pointer;}
+.vp-play{width:72px;height:72px;background:rgba(220,30,30,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.6);transition:transform .3s,box-shadow .3s;position:relative;z-index:1;}
+.vp-play::after{content:'';border-left:26px solid #FFF;border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:6px;}
+.video-placeholder:hover .vp-play{transform:scale(1.1);box-shadow:0 6px 32px rgba(0,0,0,0.8);}
+.vp-text{color:rgba(240,220,170,0.6);font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;position:relative;z-index:1;text-align:center;}
+.vp-code{font-family:monospace;font-size:0.75rem;color:rgba(200,148,30,0.45);background:rgba(0,0,0,0.4);padding:6px 14px;border:1px solid rgba(180,130,40,0.2);border-radius:2px;position:relative;z-index:1;}
+.video-caption{padding:10px 16px;background:rgba(0,0,0,0.4);border-top:1px solid rgba(160,110,30,0.2);font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(180,130,40,0.4);}
+
+/* ── DESCRIPTION ── */
+.desc-section{margin-bottom:36px;}
+.desc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.desc-block h3{font-family:'Cinzel',serif;font-size:0.9rem;font-weight:700;color:#FFE890;margin-bottom:12px;letter-spacing:0.08em;}
+.desc-block p{font-size:1rem;color:var(--text2);line-height:1.9;margin-bottom:6px;}
+
+/* Arabic RTL */
+.ar-block{direction:rtl;text-align:right;}
+.ar-block h3{font-family:'Cinzel',serif;font-size:0.9rem;font-weight:700;color:#FFE890;margin-bottom:12px;letter-spacing:0.04em;direction:ltr;text-align:right;}
+.ar-block p{font-size:1rem;color:rgba(200,160,60,0.55);line-height:2.1;margin-bottom:6px;font-family:'Crimson Text',serif;}
+
+/* ── READ MORE ── */
+.desc-collapsed{max-height:220px;overflow:hidden;position:relative;transition:max-height .7s cubic-bezier(.2,.8,.2,1);}
+.desc-collapsed.expanded{max-height:5000px;}
+.desc-collapsed:not(.expanded)::after{content:'';position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(to bottom,transparent,var(--bg2));}
+.read-more-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:transparent;border:1px solid rgba(180,130,40,0.35);color:rgba(200,160,60,0.7);font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;padding:8px 18px;cursor:pointer;transition:all .35s;border-radius:2px;}
+.read-more-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ── GALLERY ── */
+.gallery-section{margin-bottom:36px;}
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;}
+.gallery-img{width:100%;height:100%;object-fit:cover;filter:brightness(.7) saturate(1.1);transition:filter .5s,transform .5s;cursor:pointer;border:1px solid rgba(160,110,30,0.2);min-height:140px;border-radius:2px;}
+.gallery-img:hover{filter:brightness(.95) saturate(1.25);transform:scale(1.02);}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:2px solid rgba(180,130,40,0.2);padding:20px;text-align:center;}
+.footer-band{height:5px;background:linear-gradient(90deg,var(--lapis),var(--gold),var(--terra),var(--gold),var(--lapis));margin-bottom:12px;}
+footer p{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(180,130,40,0.3);}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);}
+.reveal.vis{opacity:1;transform:none;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:#0E0802;}::-webkit-scrollbar-thumb{background:rgba(180,130,40,0.25);}
+@media(max-width:700px){.facts-grid{grid-template-columns:repeat(2,1fr);}.desc-grid{grid-template-columns:1fr;}.gallery-grid{grid-template-columns:1fr 1fr;}.content{padding:24px 16px 50px;}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-band"></div>
+  <div class="header-inner">
+    <a class="back-btn" href="sites.html"><span class="back-arr">←</span><span>Zurück</span></a>
+    <div class="header-brand">Ägypten auf Deutsch</div>
+    <div style="width:90px;"></div>
+  </div>
+</header>
+
+<!-- SCARAB + TITLE -->
+<div class="scarab-header">
+  <div class="sh-title-main">Ägypten auf Deutsch</div>
+  <div style="display:flex;justify-content:center;padding:10px 0 4px;">
+    <svg width="160" height="40" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M77 20 C64 14,44 9,26 12 C13 15,4 19,2 23 C4 25,15 25,28 22 C46 19,65 19,77 20Z" fill="url(#wla)" opacity="0.9"/>
+      <path d="M83 20 C96 14,116 9,134 12 C147 15,156 19,158 23 C156 25,145 25,132 22 C114 19,95 19,83 20Z" fill="url(#wra)" opacity="0.9"/>
+      <ellipse cx="80" cy="22" rx="8" ry="10" fill="url(#sca)"/>
+      <ellipse cx="80" cy="17" rx="5.5" ry="4.5" fill="url(#sha)"/>
+      <defs>
+        <linearGradient id="wla" x1="0" y1="0" x2="80" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#5A3E0E"/><stop offset="1" stop-color="#D4AF37"/></linearGradient>
+        <linearGradient id="wra" x1="160" y1="0" x2="80" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#5A3E0E"/><stop offset="1" stop-color="#D4AF37"/></linearGradient>
+        <radialGradient id="sca" cx="50%" cy="35%"><stop stop-color="#C8941E"/><stop offset="1" stop-color="#6A4010"/></radialGradient>
+        <radialGradient id="sha" cx="50%" cy="35%"><stop stop-color="#E0AF30"/><stop offset="1" stop-color="#805010"/></radialGradient>
+      </defs>
+    </svg>
+  </div>
+</div>
+<div class="c-band"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <img id="heroImg" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/bc9840210787689.671792986a1e8.jpg" alt="Großes Ägyptisches Museum" onerror="this.src='https://images.unsplash.com/photo-1678199765550-23144857a1c4?auto=format&fit=crop&q=85&w=1400'">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-site-name">Großes Ägyptisches Museum</div>
+    <div class="hero-meta">Eröffnet 2023 · Gizeh, Ägypten · المتحف المصري الكبير</div>
+  </div>
+</div>
+<div class="c-band slim"></div>
+
+<div class="content">
+
+  <!-- FACTS -->
+  <div class="facts-grid reveal">
+    <div class="fact"><span class="fact-icon">🏛️</span><div class="fact-label">Fläche</div><div class="fact-val">490.000 m²</div></div>
+    <div class="fact"><span class="fact-icon">🏺</span><div class="fact-label">Exponate</div><div class="fact-val">100.000+</div></div>
+    <div class="fact"><span class="fact-icon">📍</span><div class="fact-label">Lage</div><div class="fact-val">Gizeh</div></div>
+    <div class="fact"><span class="fact-icon">🗓️</span><div class="fact-label">Eröffnet</div><div class="fact-val">2023</div></div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video-section reveal">
+    <div class="section-label">▶ Video zum Museum — فيديو عن المتحف</div>
+    <div class="video-frame">
+      <div class="video-top-band"></div>
+      <div id="videoArea">
+        <div class="video-placeholder" onclick="alert('Füge eine YouTube-ID in den Code ein — أضف معرّف يوتيوب في الكود')">
+          <div class="vp-play"></div>
+          <div class="vp-text">Video hinzufügen — أضف فيديو</div>
+          <div class="vp-code">videoId: 'YOUTUBE_ID'</div>
+        </div>
+      </div>
+      <div class="video-caption">Füge eine YouTube-ID im videoId-Feld hinzu — أضف معرّف يوتيوب</div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="desc-section reveal">
+    <div class="section-label">𓂀 Beschreibung — الوصف</div>
+    <div class="desc-grid">
+
+      <!-- GERMAN -->
+      <div class="desc-block">
+        <h3>Auf Deutsch</h3>
+        <div class="desc-collapsed" id="descDE">
+          <p>Stell dir vor...</p>
+          <p>Eine ganze Zivilisation lebte tausende Jahre... und schrieb all ihre Geheimnisse in einer Sprache, die niemand verstehen konnte.</p>
+          <p>Viele Jahre lang stand die Welt vor den ägyptischen Monumenten...</p>
+          <p>bewunderte sie...</p>
+          <p>aber konnte sie nicht verstehen.</p>
+          <p>Bis eines Tages...</p>
+          <p>der Rosetta Stone entdeckt wurde.</p>
+          <p>Ein kleiner Stein... der alles veränderte.</p>
+          <p>Der Stein war in drei Sprachen geschrieben...</p>
+          <p>und das war der Schlüssel.</p>
+          <p>So konnte Jean-François Champollion die Hieroglyphen entschlüsseln... und zum ersten Mal begann die Zivilisation zu sprechen.</p>
+          <p>Und heute...</p>
+          <p>wenn wir das Egyptian Museum betreten...</p>
+          <p>sehen wir nicht nur Statuen.</p>
+          <p>Wir hören die Geschichten von Menschen, die vor tausenden Jahren gelebt haben.</p>
+          <p>Schon wenn du dich dem Egyptian Museum näherst...</p>
+          <p>fühlst du, dass es kein gewöhnliches Gebäude ist...</p>
+          <p>sondern der Anfang einer Geschichte.</p>
+          <p>Schritt für Schritt...</p>
+          <p>scheint die Zeit langsamer zu werden...</p>
+          <p>die Geräusche verschwinden...</p>
+          <p>als würde der Ort dich bitten zuzuhören.</p>
+          <p>Jede Statue hier ist kein stiller Stein.</p>
+          <p>Jedes Stück erzählt von einem Menschen.</p>
+          <p>Ein König mit einem Traum...</p>
+          <p>oder ein einfacher Arbeiter, der an einem Ruhm gebaut hat, den er nie sehen würde.</p>
+          <p>Das Museum zeigt nicht nur eine Zivilisation...</p>
+          <p>es erzählt sie.</p>
+          <p>Vom ersten Moment im Leben eines alten Ägypters...</p>
+          <p>bis zu seinem Glauben an das Leben nach dem Tod.</p>
+          <p>Und vielleicht...</p>
+          <p>war das erst der Anfang... nicht das Ende.</p>
+        </div>
+        <button class="read-more-btn" id="rmDE" onclick="toggleRM('descDE','rmDE',false)">Mehr lesen ▼</button>
+      </div>
+
+      <!-- ARABIC -->
+      <div class="desc-block ar-block">
+        <h3>بالعربية</h3>
+        <div class="desc-collapsed" id="descAR">
+          <p>تخيّل...</p>
+          <p>حضارة بأكملها عاشت آلاف السنين... وكتبت أسرارها بلغة لم يستطع أحد فهمها.</p>
+          <p>لسنواتٍ طويلة وقف العالم أمام الآثار المصرية العظيمة...</p>
+          <p>أُعجب بها...</p>
+          <p>لكنه عجز عن فهمها.</p>
+          <p>حتى جاء ذلك اليوم...</p>
+          <p>يوم اكتُشف فيه حجر رشيد.</p>
+          <p>حجر صغير... غيّر كل شيء.</p>
+          <p>كُتب الحجر بثلاث لغات...</p>
+          <p>وكان ذلك هو المفتاح.</p>
+          <p>هكذا تمكّن جان-فرانسوا شامبليون من فك رموز الهيروغليفية... وللمرة الأولى بدأت الحضارة تتحدث.</p>
+          <p>واليوم...</p>
+          <p>حين نعبر أبواب المتحف المصري الكبير...</p>
+          <p>لا نرى مجرد تماثيل.</p>
+          <p>نسمع قصص بشر عاشوا قبل آلاف السنين.</p>
+          <p>حين تقترب من المتحف المصري الكبير...</p>
+          <p>تشعر أنه ليس مجرد مبنى...</p>
+          <p>بل هو بداية حكاية.</p>
+          <p>خطوة بعد خطوة...</p>
+          <p>يبدو أن الزمن يتباطأ...</p>
+          <p>تتلاشى الأصوات...</p>
+          <p>كأن المكان يرجوك أن تُصغي.</p>
+          <p>كل تمثال هنا ليس حجراً صامتاً.</p>
+          <p>كل قطعة تحكي عن إنسان حقيقي.</p>
+          <p>ملك يحمل حلمًا...</p>
+          <p>أو عامل بسيط بنى مجدًا لم يُقدَّر له أن يشهده.</p>
+          <p>المتحف لا يعرض حضارة فحسب...</p>
+          <p>بل يرويها.</p>
+          <p>من اللحظة الأولى في حياة المصري القديم...</p>
+          <p>حتى إيمانه بالحياة بعد الموت.</p>
+          <p>ولعلّ...</p>
+          <p>هذا لم يكن سوى البداية... لا النهاية.</p>
+        </div>
+        <button class="read-more-btn" id="rmAR" onclick="toggleRM('descAR','rmAR',true)" style="direction:rtl;">اقرأ المزيد ▼</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-section reveal">
+    <div class="section-label">𓇯 Galerie — معرض الصور</div>
+    <div class="gallery-grid">
+      <img class="gallery-img" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/bc9840210787689.671792986a1e8.jpg" alt="GEM Hauptbild" loading="lazy" onerror="this.style.display='none'">
+      <img class="gallery-img" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/6d103a210787689.671792986b0f9.jpg" alt="GEM Innenansicht" loading="lazy" onerror="this.style.display='none'">
+      <img class="gallery-img" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/197381210787689.6717929869928.jpg" alt="GEM Ausstellung" loading="lazy" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+</div><!-- content -->
+
+<footer>
+  <div class="footer-band"></div>
+  <p>© 2025 Ägypten auf Deutsch — Das ewige Erbe · التراث الأبدي</p>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script>
+firebase.initializeApp({apiKey:"AIzaSyCPmGeiZXVeFjsUR4qyakCGVXmwQgXus0A",authDomain:"agypten-auf-deutsch.firebaseapp.com",projectId:"agypten-auf-deutsch",storageBucket:"agypten-auf-deutsch.firebasestorage.app",messagingSenderId:"434304618701",appId:"1:434304618701:web:92e7e134bfc1d2f1ba5984",measurementId:"G-7C1NEMD3QF"});
+const auth=firebase.auth();
+auth.onAuthStateChanged(u=>{
+  if(!u||!u.emailVerified){window.location.href='auth.html';return;}
+  document.body.classList.add('ready');
+  // Set YouTube video if you have one
+  const videoId=''; // ← Put YouTube video ID here e.g. 'dQw4w9WgXcQ'
+  if(videoId){
+    document.getElementById('videoArea').innerHTML=`<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen title="Großes Ägyptisches Museum"></iframe>`;
+  }
+  // Intersection observer for reveal
+  const io=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.05});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{io.observe(el);el.style.transitionDelay=i*.08+'s';});
+});
+
+function toggleRM(blockId, btnId, isAR){
+  const block=document.getElementById(blockId);
+  const btn=document.getElementById(btnId);
+  if(block.classList.contains('expanded')){
+    block.classList.remove('expanded');
+    btn.textContent=isAR?'اقرأ المزيد ▼':'Mehr lesen ▼';
+    block.scrollIntoView({behavior:'smooth',block:'start'});
+  } else {
+    block.classList.add('expanded');
+    btn.textContent=isAR?'أقل ▲':'Weniger ▲';
+  }
+}
+</script>
+</body>
+</html>

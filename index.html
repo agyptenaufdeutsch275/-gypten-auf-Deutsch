@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ägypten auf Deutsch — Willkommen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Crimson Text', serif;
+      background: #1A0E04;
+    }
+
+    /* ── FULL BG PHOTO ── */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10, 5, 2, 0.38) 0%, rgba(10, 5, 2, 0.22) 40%, rgba(10, 5, 2, 0.55) 70%, rgba(10, 5, 2, 0.82) 100%);
+    }
+
+    /* ── PAGE ── */
+    .page {
+      position: relative;
+      z-index: 10;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 36px 20px 40px;
+    }
+
+    /* ── HEADER / BRAND ── */
+    .brand {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: 0.06em;
+      background: linear-gradient(180deg, #FFE87A 0%, #D4A020 40%, #F0C030 65%, #B07818 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      filter: drop-shadow(0 2px 12px rgba(180, 120, 0, 0.6));
+    }
+
+    /* Winged Scarab SVG */
+    .scarab-wrap {
+      margin: 10px auto 8px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ── LOGIN CARD ── */
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: linear-gradient(160deg, #5C3818 0%, #3E2208 35%, #4A2C10 65%, #3A1E06 100%);
+      border: 2px solid rgba(180, 130, 40, 0.5);
+      border-radius: 4px;
+      box-shadow: 0 8px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(100, 60, 10, 0.3), inset 0 1px 0 rgba(200, 160, 60, 0.15);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Stone texture lines */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(0, 0, 0, 0.04) 18px, rgba(0, 0, 0, 0.04) 19px),
+        repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(255, 255, 255, 0.01) 28px, rgba(255, 255, 255, 0.01) 29px);
+    }
+
+    .card-top-band {
+      height: 6px;
+      background: linear-gradient(90deg, #8B2810, #C8941E, #1E3A6E, #C8941E, #1E5C38, #C8941E, #8B2810);
+    }
+
+    .card-body {
+      padding: 28px 32px 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #F0D878;
+      text-align: center;
+      letter-spacing: 0.08em;
+      margin-bottom: 22px;
+      text-shadow: 0 2px 8px rgba(180, 120, 0, 0.5);
+    }
+
+    .card-heading span {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      color: rgba(200, 160, 60, 0.6);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── INPUTS ── */
+    .field {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .field-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.95rem;
+      color: rgba(80, 50, 10, 0.7);
+    }
+
+    .field input {
+      width: 100%;
+      background: linear-gradient(to bottom, #F5E8C0, #EDD89A);
+      border: 1px solid rgba(140, 90, 20, 0.4);
+      border-bottom: 2px solid rgba(140, 90, 20, 0.6);
+      font-family: 'Crimson Text', serif;
+      font-size: 1.05rem;
+      color: #2A1A06;
+      padding: 11px 14px 11px 40px;
+      outline: none;
+      border-radius: 2px;
+      transition: all .35s;
+    }
+
+    .field input:focus {
+      background: linear-gradient(to bottom, #FFF5D8, #F5E5B0);
+      border-color: rgba(180, 130, 40, 0.7);
+      box-shadow: 0 0 16px rgba(180, 130, 40, 0.2);
+    }
+
+    .field input::placeholder {
+      color: rgba(80, 50, 10, 0.45);
+      font-style: normal;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-main {
+      width: 100%;
+      padding: 13px;
+      margin-top: 6px;
+      background: linear-gradient(to bottom, #3A70C0, #1E4A9E, #2A5AB0);
+      border: 1px solid rgba(80, 120, 200, 0.4);
+      border-top: 1px solid rgba(120, 170, 240, 0.3);
+      color: #FFFFFF;
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.25em;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 3px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(20, 50, 150, 0.5), inset 0 1px 0 rgba(160, 200, 255, 0.2);
+      transition: all .3s;
+    }
+
+    .btn-main:hover {
+      background: linear-gradient(to bottom, #4A80D0, #2A5AAE, #3A6AC0);
+      box-shadow: 0 6px 28px rgba(20, 50, 150, 0.7);
+      transform: translateY(-1px);
+    }
+
+    .btn-main:active {
+      transform: none;
+    }
+
+    .btn-main:disabled {
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    .btn-link {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      margin-top: 6px;
+      background: transparent;
+      border: none;
+      color: rgba(200, 160, 60, 0.75);
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color .3s;
+    }
+
+    .btn-link:hover {
+      color: #F0D080;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .div-l,
+    .div-r {
+      flex: 1;
+      height: 1px;
+      background: rgba(160, 110, 30, 0.35);
+    }
+
+    .div-c {
+      color: rgba(180, 130, 40, 0.5);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── MSG ── */
+    .msg {
+      min-height: 18px;
+      font-size: .85rem;
+      text-align: center;
+      margin-bottom: 8px;
+      opacity: 0;
+      transition: opacity .4s;
+      padding: 0 4px;
+    }
+
+    .msg.on {
+      opacity: 1;
+    }
+
+    .msg.err {
+      color: #FF9060;
+      font-style: italic;
+    }
+
+    .msg.ok {
+      color: #80C870;
+      font-style: italic;
+    }
+
+    .sp {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      margin-right: 8px;
+      border: 2px solid rgba(255, 255, 255, .3);
+      border-top-color: #FFF;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* ── VIEWS ── */
+    .view {
+      display: none;
+      animation: vIn .4s ease-out;
+    }
+
+    .view.on {
+      display: block;
+    }
+
+    @keyframes vIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    /* ── VERIFY ── */
+    .vfy {
+      text-align: center;
+      padding: 6px 0 10px;
+    }
+
+    .vfy-ic {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .vfy-t {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: #F0D878;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .vfy-p {
+      font-size: .92rem;
+      color: rgba(230, 200, 140, 0.7);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .vfy-p em {
+      color: rgba(200, 160, 60, 0.6);
+    }
+
+    /* ── BOTTOM BAND ── */
+    .card-bot-band {
+      height: 6px;
+      background: linear-gradient(90deg, #1E3A6E, #C8941E, #1E5C38, #C8941E, #1E3A6E);
+    }
+
+    /* ── BOTTOM TEXT ── */
+    .page-footer {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .page-footer p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(200, 160, 60, 0.35);
+    }
+
+    /* PAGE ANIMATION */
+    .brand {
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: brandIn 1s ease forwards .3s;
+    }
+
+    .card {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: cardIn 1s ease forwards .6s;
+    }
+
+    @keyframes brandIn {
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND PHOTO -->
+  <div class="bg">
+    <img src="https://images.unsplash.com/photo-1632944398987-494eebe663be?auto=format&fit=crop&q=90&w=1920" alt="Pyramiden bei Sonnenuntergang" onerror="this.src='https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=90&w=1920'">
+    <div class="bg-overlay"></div>
+  </div>
+
+  <div class="page">
+
+    <!-- BRAND HEADER -->
+    <div class="brand">
+      <h1 class="brand-title">Ägypten<br>auf Deutsch</h1>
+      <!-- Winged Scarab SVG -->
+      <div class="scarab-wrap">
+        <svg width="200" height="48" viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left wing -->
+          <path d="M96 24 C80 16, 55 10, 30 14 C15 17, 5 22, 2 26 C5 28, 18 28, 35 26 C55 23, 78 22, 96 24Z"
+            fill="url(#wgl)" opacity="0.9" />
+          <path d="M96 24 C82 20, 60 18, 40 22 C25 25, 12 28, 5 32 C12 33, 28 32, 45 30 C68 27, 86 26, 96 24Z"
+            fill="url(#wgl)" opacity="0.6" />
+          <path d="M96 24 C84 22, 65 22, 48 26 C36 29, 22 33, 10 36 C18 37, 34 36, 52 33 C72 30, 88 28, 96 24Z"
+            fill="url(#wgl)" opacity="0.35" />
+          <!-- Right wing -->
+          <path
+            d="M104 24 C120 16, 145 10, 170 14 C185 17, 195 22, 198 26 C195 28, 182 28, 165 26 C145 23, 122 22, 104 24Z"
+            fill="url(#wgr)" opacity="0.9" />
+          <path
+            d="M104 24 C118 20, 140 18, 160 22 C175 25, 188 28, 195 32 C188 33, 172 32, 155 30 C132 27, 114 26, 104 24Z"
+            fill="url(#wgr)" opacity="0.6" />
+          <path
+            d="M104 24 C116 22, 135 22, 152 26 C164 29, 178 33, 190 36 C182 37, 166 36, 148 33 C128 30, 112 28, 104 24Z"
+            fill="url(#wgr)" opacity="0.35" />
+          <!-- Scarab body -->
+          <ellipse cx="100" cy="26" rx="10" ry="12" fill="url(#scarabG)" />
+          <ellipse cx="100" cy="22" rx="7" ry="6" fill="url(#headG)" />
+          <!-- Antennae -->
+          <line x1="95" y1="17" x2="90" y2="10" stroke="rgba(212,175,55,0.6)" stroke-width="1" />
+          <line x1="105" y1="17" x2="110" y2="10" stroke="rgba(212,175,55,0.6)" stroke-width="1" />
+          <circle cx="90" cy="9" r="1.5" fill="rgba(212,175,55,0.6)" />
+          <circle cx="110" cy="9" r="1.5" fill="rgba(212,175,55,0.6)" />
+          <!-- Wing border lines -->
+          <path d="M5 26 Q50 18 96 24" stroke="rgba(212,175,55,0.4)" stroke-width="0.8" fill="none" />
+          <path d="M195 26 Q150 18 104 24" stroke="rgba(212,175,55,0.4)" stroke-width="0.8" fill="none" />
+          <defs>
+            <linearGradient id="wgl" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#6A4A10" />
+              <stop offset="60%" stop-color="#C8941E" />
+              <stop offset="100%" stop-color="#D4AF37" />
+            </linearGradient>
+            <linearGradient id="wgr" x1="200" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#6A4A10" />
+              <stop offset="60%" stop-color="#C8941E" />
+              <stop offset="100%" stop-color="#D4AF37" />
+            </linearGradient>
+            <radialGradient id="scarabG" cx="50%" cy="40%">
+              <stop offset="0%" stop-color="#C8941E" />
+              <stop offset="100%" stop-color="#7A5010" />
+            </radialGradient>
+            <radialGradient id="headG" cx="50%" cy="40%">
+              <stop offset="0%" stop-color="#D4AF37" />
+              <stop offset="100%" stop-color="#8A6018" />
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <!-- LOGIN / REGISTER CARD -->
+    <div class="card">
+      <div class="card-top-band"></div>
+      <div class="card-body">
+
+        <!-- LOGIN VIEW -->
+        <div id="vLog" class="view on">
+          <h2 class="card-heading">Willkommen zurück!<span>Welcome Back</span></h2>
+          <div class="field"><span class="field-icon">✉</span><input type="email" id="le" placeholder="E-Mail"
+              autocomplete="email"></div>
+          <div class="field"><span class="field-icon">🔒</span><input type="password" id="lp" placeholder="Passwort"
+              autocomplete="current-password"></div>
+          <div class="msg" id="lm"></div>
+          <button class="btn-main" id="lBtn" onclick="doLogin()">Anmelden</button>
+          <div class="divider">
+            <div class="div-l"></div><span class="div-c">𓊹</span>
+            <div class="div-r"></div>
+          </div>
+          <button class="btn-link" onclick="sw('register')">Noch kein Konto? Jetzt registrieren</button>
+        </div>
+
+        <!-- REGISTER VIEW -->
+        <div id="vReg" class="view">
+          <h2 class="card-heading">Konto erstellen<span>Create Your Account</span></h2>
+          <div class="field"><span class="field-icon">✉</span><input type="email" id="re" placeholder="E-Mail"
+              autocomplete="email"></div>
+          <div class="field"><span class="field-icon">🔒</span><input type="password" id="rp"
+              placeholder="Passwort (min. 6)" autocomplete="new-password"></div>
+          <div class="msg" id="rm"></div>
+          <button class="btn-main" id="rBtn" onclick="doReg()">Registrieren</button>
+          <div class="divider">
+            <div class="div-l"></div><span class="div-c">𓊹</span>
+            <div class="div-r"></div>
+          </div>
+          <button class="btn-link" onclick="sw('login')">Bereits ein Konto? Jetzt anmelden</button>
+        </div>
+
+        <!-- VERIFY VIEW -->
+        <div id="vVer" class="view vfy">
+          <span class="vfy-ic">✉️</span>
+          <h2 class="vfy-t">Siegel Versandt</h2>
+          <p class="vfy-p">Wir haben dir eine E-Mail geschickt. Bitte bestätige deine Adresse.<br><em>We sent you a
+              confirmation email. Please check your inbox.</em></p>
+          <button class="btn-main" onclick="sw('login')">Zur Anmeldung</button>
+          <button class="btn-link" onclick="doResend()">Erneut senden</button>
+        </div>
+
+      </div>
+      <div class="card-bot-band"></div>
+    </div>
+
+    <div class="page-footer">
+      <p>𓊹 Das ewige Erbe Ägyptens · The Eternal Legacy of Egypt 𓊹</p>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script>
+    firebase.initializeApp({ apiKey: "AIzaSyCPmGeiZXVeFjsUR4qyakCGVXmwQgXus0A", authDomain: "agypten-auf-deutsch.firebaseapp.com", projectId: "agypten-auf-deutsch", storageBucket: "agypten-auf-deutsch.firebasestorage.app", messagingSenderId: "434304618701", appId: "1:434304618701:web:92e7e134bfc1d2f1ba5984", measurementId: "G-7C1NEMD3QF" });
+    const auth = firebase.auth();
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    auth.onAuthStateChanged(u => { if (u && u.emailVerified) go('sites.html'); });
+    const EM = { 'auth/email-already-in-use': 'Diese E-Mail ist bereits registriert.', 'auth/weak-password': 'Passwort mind. 6 Zeichen.', 'auth/invalid-email': 'Ungültige E-Mail-Adresse.', 'auth/user-not-found': 'Kein Konto mit dieser E-Mail.', 'auth/wrong-password': 'Falsches Passwort.', 'auth/invalid-credential': 'Ungültige Anmeldedaten.', 'auth/too-many-requests': 'Zu viele Versuche. Bitte warte.', 'auth/network-request-failed': 'Netzwerkfehler.' };
+    function setM(id, t, tp) { const el = document.getElementById(id); el.textContent = t; el.className = t ? `msg on ${tp || ''}` : 'msg'; }
+    function busy(id, b, lb) { const el = document.getElementById(id); if (b) { el.disabled = true; el.innerHTML = '<span class="sp"></span>...'; } else { el.disabled = false; el.textContent = lb; } }
+    async function doReg() { const e = document.getElementById('re').value.trim(), p = document.getElementById('rp').value; if (!e || !p) { setM('rm', 'Bitte alle Felder ausfüllen.', 'err'); return; } busy('rBtn', true, ''); setM('rm', '', ''); try { const u = await auth.createUserWithEmailAndPassword(e, p); await u.user.sendEmailVerification(); document.getElementById('le').value = e; sw('verify'); } catch (err) { setM('rm', EM[err.code] || err.message, 'err'); } finally { busy('rBtn', false, 'Registrieren'); } }
+    async function doLogin() { const e = document.getElementById('le').value.trim(), p = document.getElementById('lp').value; if (!e || !p) { setM('lm', 'Bitte alle Felder ausfüllen.', 'err'); return; } busy('lBtn', true, ''); setM('lm', '', ''); try { const u = await auth.signInWithEmailAndPassword(e, p); if (!u.user.emailVerified) { await auth.signOut(); setM('lm', 'E-Mail noch nicht bestätigt.', 'err'); return; } go('sites.html'); } catch (err) { setM('lm', EM[err.code] || err.message, 'err'); } finally { busy('lBtn', false, 'Anmelden'); } }
+    async function doResend() { try { const u = auth.currentUser; if (u) await u.sendEmailVerification(); alert('E-Mail erneut gesendet!'); } catch { alert('Fehler. Bitte erneut versuchen.'); } }
+    function sw(t) { ['vLog', 'vReg', 'vVer'].forEach(i => document.getElementById(i).classList.remove('on')); document.getElementById(t === 'login' ? 'vLog' : t === 'register' ? 'vReg' : 'vVer').classList.add('on'); }
+    function go(url) { document.querySelector('.page').style.cssText += 'transition:opacity .6s;opacity:0'; setTimeout(() => window.location.href = url, 640); }
+    document.addEventListener('keydown', e => { if (e.key !== 'Enter') return; if (document.getElementById('vReg').classList.contains('on')) doReg(); else if (document.getElementById('vLog').classList.contains('on')) doLogin(); });
+  </script>
+</body>
+
+</html>
