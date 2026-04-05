@@ -166,10 +166,26 @@
       font-family: 'Crimson Text', serif;
       font-size: 1.05rem;
       color: #2A1A06;
-      padding: 11px 14px 11px 40px;
+      padding: 11px 40px 11px 40px;
       outline: none;
       border-radius: 2px;
       transition: all .35s;
+    }
+
+    .pwd-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: rgba(80, 50, 10, 0.7);
+      user-select: none;
+      font-size: 0.95rem;
+      transition: color .3s;
+    }
+
+    .pwd-toggle:hover {
+      color: rgba(140, 90, 20, 0.9);
     }
 
     .field input:focus {
@@ -485,8 +501,11 @@
           <h2 class="card-heading">Willkommen zurück!<span>Welcome Back</span></h2>
           <div class="field"><span class="field-icon">✉</span><input type="email" id="le" placeholder="E-Mail"
               autocomplete="email"></div>
-          <div class="field"><span class="field-icon">🔒</span><input type="password" id="lp" placeholder="Passwort"
-              autocomplete="current-password"></div>
+          <div class="field">
+            <span class="field-icon">🔒</span>
+            <input type="password" id="lp" placeholder="Passwort" autocomplete="current-password">
+            <span class="pwd-toggle" onclick="togglePwd('lp')">👁️</span>
+          </div>
           <div class="msg" id="lm"></div>
           <button class="btn-main" id="lBtn" onclick="doLogin()">Anmelden</button>
           <div class="divider">
@@ -501,8 +520,16 @@
           <h2 class="card-heading">Konto erstellen<span>Create Your Account</span></h2>
           <div class="field"><span class="field-icon">✉</span><input type="email" id="re" placeholder="E-Mail"
               autocomplete="email"></div>
-          <div class="field"><span class="field-icon">🔒</span><input type="password" id="rp"
-              placeholder="Passwort (min. 6)" autocomplete="new-password"></div>
+          <div class="field">
+            <span class="field-icon">🔒</span>
+            <input type="password" id="rp" placeholder="Passwort (min. 6)" autocomplete="new-password">
+            <span class="pwd-toggle" onclick="togglePwd('rp')">👁️</span>
+          </div>
+          <div class="field">
+            <span class="field-icon">🔒</span>
+            <input type="password" id="rc" placeholder="Passwort bestätigen" autocomplete="new-password">
+            <span class="pwd-toggle" onclick="togglePwd('rc')">👁️</span>
+          </div>
           <div class="msg" id="rm"></div>
           <button class="btn-main" id="rBtn" onclick="doReg()">Registrieren</button>
           <div class="divider">
@@ -541,7 +568,8 @@
     const EM = { 'auth/email-already-in-use': 'Diese E-Mail ist bereits registriert.', 'auth/weak-password': 'Passwort mind. 6 Zeichen.', 'auth/invalid-email': 'Ungültige E-Mail-Adresse.', 'auth/user-not-found': 'Kein Konto mit dieser E-Mail.', 'auth/wrong-password': 'Falsches Passwort.', 'auth/invalid-credential': 'Ungültige Anmeldedaten.', 'auth/too-many-requests': 'Zu viele Versuche. Bitte warte.', 'auth/network-request-failed': 'Netzwerkfehler.' };
     function setM(id, t, tp) { const el = document.getElementById(id); el.textContent = t; el.className = t ? `msg on ${tp || ''}` : 'msg'; }
     function busy(id, b, lb) { const el = document.getElementById(id); if (b) { el.disabled = true; el.innerHTML = '<span class="sp"></span>...'; } else { el.disabled = false; el.textContent = lb; } }
-    async function doReg() { const e = document.getElementById('re').value.trim(), p = document.getElementById('rp').value; if (!e || !p) { setM('rm', 'Bitte alle Felder ausfüllen.', 'err'); return; } busy('rBtn', true, ''); setM('rm', '', ''); try { const u = await auth.createUserWithEmailAndPassword(e, p); await u.user.sendEmailVerification(); document.getElementById('le').value = e; sw('verify'); } catch (err) { setM('rm', EM[err.code] || err.message, 'err'); } finally { busy('rBtn', false, 'Registrieren'); } }
+    function togglePwd(id) { const el = document.getElementById(id); el.type = el.type === 'password' ? 'text' : 'password'; }
+    async function doReg() { const e = document.getElementById('re').value.trim(), p = document.getElementById('rp').value, c = document.getElementById('rc').value; if (!e || !p || !c) { setM('rm', 'Bitte alle Felder ausfüllen.', 'err'); return; } if (p !== c) { setM('rm', 'Passwörter stimmen nicht überein.', 'err'); return; } busy('rBtn', true, ''); setM('rm', '', ''); try { const u = await auth.createUserWithEmailAndPassword(e, p); await u.user.sendEmailVerification(); document.getElementById('le').value = e; sw('verify'); } catch (err) { setM('rm', EM[err.code] || err.message, 'err'); } finally { busy('rBtn', false, 'Registrieren'); } }
     async function doLogin() { const e = document.getElementById('le').value.trim(), p = document.getElementById('lp').value; if (!e || !p) { setM('lm', 'Bitte alle Felder ausfüllen.', 'err'); return; } busy('lBtn', true, ''); setM('lm', '', ''); try { const u = await auth.signInWithEmailAndPassword(e, p); if (!u.user.emailVerified) { await auth.signOut(); setM('lm', 'E-Mail noch nicht bestätigt.', 'err'); return; } go('sites.html'); } catch (err) { setM('lm', EM[err.code] || err.message, 'err'); } finally { busy('lBtn', false, 'Anmelden'); } }
     async function doResend() { try { const u = auth.currentUser; if (u) await u.sendEmailVerification(); alert('E-Mail erneut gesendet!'); } catch { alert('Fehler. Bitte erneut versuchen.'); } }
     function sw(t) { ['vLog', 'vReg', 'vVer'].forEach(i => document.getElementById(i).classList.remove('on')); document.getElementById(t === 'login' ? 'vLog' : t === 'register' ? 'vReg' : 'vVer').classList.add('on'); }

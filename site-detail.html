@@ -280,7 +280,7 @@ footer p{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;text
 firebase.initializeApp({apiKey:"AIzaSyCPmGeiZXVeFjsUR4qyakCGVXmwQgXus0A",authDomain:"agypten-auf-deutsch.firebaseapp.com",projectId:"agypten-auf-deutsch",storageBucket:"agypten-auf-deutsch.firebasestorage.app",messagingSenderId:"434304618701",appId:"1:434304618701:web:92e7e134bfc1d2f1ba5984",measurementId:"G-7C1NEMD3QF"});
 const auth=firebase.auth();
 auth.onAuthStateChanged(u=>{
-  if(!u||!u.emailVerified){window.location.href='auth.html';return;}
+  if(!u||!u.emailVerified){window.location.href='index.html';return;}
   document.body.classList.add('ready');
   // Set YouTube video if you have one
   const videoId=''; // ← Put YouTube video ID here e.g. 'dQw4w9WgXcQ'
