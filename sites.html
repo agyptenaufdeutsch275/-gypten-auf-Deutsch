@@ -241,19 +241,19 @@ const SITES=[
   {id:'gem',name:'Großes Ägyptisches Museum',en:'Grand Egyptian Museum',ar:'المتحف المصري الكبير',img:'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/bc9840210787689.671792986a1e8.jpg'},
 ];
 const DEITIES=[
-  {g:'☀',name:'Ra',en:'Ra',ar:'رع',role:'Gott der Sonne'},
-  {g:'𓀹',name:'Osiris',en:'Osiris',ar:'أوزوريس',role:'Herr der Unterwelt'},
-  {g:'𓁇',name:'Isis',en:'Isis',ar:'إيزيس',role:'Göttin der Magie'},
-  {g:'𓃣',name:'Anubis',en:'Anubis',ar:'أنوبيس',role:'Hüter der Toten'},
-  {g:'𓅃',name:'Horus',en:'Horus',ar:'حورس',role:'Falke des Himmels'},
-  {g:'𓅝',name:'Thoth',en:'Thoth',ar:'تحوت',role:'Gott der Weisheit'},
+  {g:'☀',name:'Ra',en:'Ra',ar:'رع',role:'Gott der Sonne',roleAr:'إله الشمس'},
+  {g:'𓀹',name:'Osiris',en:'Osiris',ar:'أوزوريس',role:'Herr der Unterwelt',roleAr:'سيد العالم السفلي'},
+  {g:'𓁇',name:'Isis',en:'Isis',ar:'إيزيس',role:'Göttin der Magie',roleAr:'إلهة السحر'},
+  {g:'𓃣',name:'Anubis',en:'Anubis',ar:'أنوبيس',role:'Hüter der Toten',roleAr:'حارس الموتى'},
+  {g:'𓅃',name:'Horus',en:'Horus',ar:'حورس',role:'Falke des Himmels',roleAr:'صقر السماء'},
+  {g:'𓅝',name:'Thoth',en:'Thoth',ar:'تحوت',role:'Gott der Weisheit',roleAr:'إله الحكمة'},
 ];
 const ERAS=[
-  {p:'ca. 3100–2686 v. Chr.',n:'Frühdynastische Zeit',en:'Early Dynastic Period',ar:'عصر الأسرات المبكر',d:'Vereinigung Ober- und Unterägyptens. Die Hieroglyphenschrift entsteht.'},
-  {p:'ca. 2686–2181 v. Chr.',n:'Das Alte Reich',en:'The Old Kingdom',ar:'الدولة القديمة',d:'Das Zeitalter der Pyramiden. Cheops baut das letzte Weltwunder der Antike.'},
-  {p:'ca. 2055–1650 v. Chr.',n:'Das Mittlere Reich',en:'The Middle Kingdom',ar:'الدولة الوسطى',d:'Eine Renaissance der Kunst und Literatur. Expansion nach Nubien.'},
-  {p:'ca. 1550–1070 v. Chr.',n:'Das Neue Reich',en:'The New Kingdom',ar:'الدولة الحديثة',d:'Ramses II., Tutanchamun, Nofretete — das goldene Zeitalter Ägyptens.'},
-  {p:'ca. 332–30 v. Chr.',n:'Die Ptolemäische Zeit',en:'The Ptolemaic Era',ar:'العصر البطلمي',d:'Kleopatra VII., die letzte Pharaonin. Ende dreitausend Jahre Pharaonenherrschaft.'},
+  {p:'ca. 3100–2686 v. Chr.',n:'Frühdynastische Zeit',en:'Early Dynastic Period',ar:'عصر الأسرات المبكر',d:'Vereinigung Ober- und Unterägyptens. Die Hieroglyphenschrift entsteht.', dAr:'توحيد مصر العليا والسفلى. ظهور الكتابة الهيروغليفية.'},
+  {p:'ca. 2686–2181 v. Chr.',n:'Das Alte Reich',en:'The Old Kingdom',ar:'الدولة القديمة',d:'Das Zeitalter der Pyramiden. Cheops baut das letzte Weltwunder der Antike.', dAr:'عصر الأهرامات. بناء خوفو لآخر عجائب الدنيا القديمة.'},
+  {p:'ca. 2055–1650 v. Chr.',n:'Das Mittlere Reich',en:'The Middle Kingdom',ar:'الدولة الوسطى',d:'Eine Renaissance der Kunst und Literatur. Expansion nach Nubien.', dAr:'نهضة الفن والأدب. التوسع نحو النوبة.'},
+  {p:'ca. 1550–1070 v. Chr.',n:'Das Neue Reich',en:'The New Kingdom',ar:'الدولة الحديثة',d:'Ramses II., Tutanchamun, Nofretete — das goldene Zeitalter Ägyptens.', dAr:'رمسيس الثاني، توت عنخ آمون، نفرتيتي — العصر الذهبي لمصر.'},
+  {p:'ca. 332–30 v. Chr.',n:'Die Ptolemäische Zeit',en:'The Ptolemaic Era',ar:'العصر البطلمي',d:'Kleopatra VII., die letzte Pharaonin. Ende dreitausend Jahre Pharaonenherrschaft.', dAr:'كليوباترا السابعة، آخر الفراعنة. نهاية ثلاثة آلاف عام من حكم الفراعنة.'},
 ];
 
 function init(){
@@ -279,6 +279,7 @@ function init(){
       <div class="dc-en">${d.en}</div>
       <div class="dc-ar" style="font-size:0.75rem; color:rgba(200,160,60,0.6); margin-top:2px;" dir="rtl">${d.ar}</div>
       <div class="dc-role">${d.role}</div>
+      <div class="dc-role-ar" style="font-size:0.8rem; color:rgba(200,148,30,0.6); margin-top:2px;" dir="rtl">${d.roleAr}</div>
     </div>`).join('');
   document.getElementById('timeline').innerHTML=ERAS.map(e=>`
     <div class="era">
@@ -288,6 +289,7 @@ function init(){
         <div class="era-en">${e.en}</div>
         <div class="era-ar" style="font-size:0.85rem; color:rgba(200,160,60,0.7); margin-bottom:5px;" dir="rtl">${e.ar}</div>
         <div class="era-desc">${e.d}</div>
+        <div class="era-desc-ar" style="font-size:0.9rem; color:rgba(200,160,60,0.7); margin-top:6px;" dir="rtl">${e.dAr}</div>
       </div>
       <div class="era-dot"></div>
     </div>`).join('');
