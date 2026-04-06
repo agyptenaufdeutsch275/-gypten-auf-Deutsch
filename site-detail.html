@@ -2,8 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1100">
-<title id="pageTitle">Ägypten auf Deutsch — Großes Ägyptisches Museum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -99,6 +98,20 @@ footer p{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;text
 .reveal.vis{opacity:1;transform:none;}
 ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:#0E0802;}::-webkit-scrollbar-thumb{background:rgba(180,130,40,0.25);}
 
+/* ── MOBILE RESPONSIVE ── */
+@media(max-width:700px){
+  .header-inner { padding: 10px 16px; }
+  .header-brand { font-size: 1.1rem; }
+  .back-btn { font-size: 0.5rem; padding: 6px 10px; }
+  .sh-title-main { font-size: 2.2rem; padding: 0 10px; }
+  .scarab-row svg { width: 140px; height: 34px; }
+  .hero { height: 30vh; min-height: 240px; }
+  .content { padding: 20px 16px 40px; }
+  .facts-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .fact-block { padding: 12px; }
+  .desc-grid { grid-template-columns: 1fr; gap: 32px; }
+  .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
+}
 </style>
 </head>
 <body>
