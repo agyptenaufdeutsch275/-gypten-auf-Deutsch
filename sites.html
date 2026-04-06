@@ -723,6 +723,7 @@
 
     const SITES = [
       { id: 'gem', name: 'Großes Ägyptisches Museum', en: 'Grand Egyptian Museum', ar: 'المتحف المصري الكبير', img: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/bc9840210787689.671792986a1e8.jpg' },
+      { id: 'tut', name: 'Maske des Tutanchamun', en: 'Mask of Tutankhamun', ar: 'قناع توت عنخ آمون', img: 'https://www.thamesandhudson.com/cdn/shop/articles/Listing-image_36bbdc30-2bfa-411f-a2f1-371ae01ae64b.jpg?v=1739201137&width=1500' },
     ];
     const DEITIES = [
       { g: '☀', name: 'Ra', en: 'Ra', ar: 'رع', role: 'Gott der Sonne', roleAr: 'إله الشمس' },
@@ -779,7 +780,11 @@
     </div>`).join('');
       setTimeout(() => { const io = new IntersectionObserver(en => { en.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }); }, { threshold: .06 }); document.querySelectorAll('.reveal').forEach((el, i) => { io.observe(el); el.style.transitionDelay = i * .05 + 's'; }); }, 200);
     }
-    function goTo(id) { localStorage.setItem('selectedSite', id); document.body.style.cssText += 'opacity:0;transition:opacity .5s'; setTimeout(() => window.location.href = 'site-detail.html', 520); }
+    function goTo(id) { 
+      localStorage.setItem('selectedSite', id); 
+      document.body.style.cssText += 'opacity:0;transition:opacity .5s'; 
+      setTimeout(() => window.location.href = id === 'gem' ? 'site-detail.html' : id + '.html', 520); 
+    }
   </script>
 </body>
 
