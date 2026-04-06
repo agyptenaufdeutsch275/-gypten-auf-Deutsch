@@ -134,10 +134,18 @@
     .card-heading span {
       display: block;
       font-size: 0.5rem;
-      letter-spacing: 0.45em;
+      letter-spacing: 0.35em;
       color: rgba(200, 160, 60, 0.6);
       text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .card-heading-ar {
+      display: block;
+      font-size: 0.65rem;
+      color: rgba(200, 160, 60, 0.6);
       margin-top: 4px;
+      text-transform: none;
+      letter-spacing: normal;
     }
 
     /* ── INPUTS ── */
@@ -533,21 +541,33 @@
 
         <!-- LOGIN VIEW -->
         <div id="vLog" class="view on">
-          <h2 class="card-heading">Willkommen zurück!<span>Welcome Back</span></h2>
-          <div class="field"><span class="field-icon">✉</span><input type="email" id="le" placeholder="E-Mail"
+          <div class="card-heading">
+            Willkommen im Alten Ägypten
+            <span>The secrets of the pyramids await you</span>
+            <div class="card-heading-ar" dir="rtl">أسرار الأهرامات في انتظارك</div>
+          </div>
+          <div class="field"><span class="field-icon">✉</span><input type="email" id="le" placeholder="E-Mail / Email / البريد الإلكتروني"
               autocomplete="email"></div>
           <div class="field">
             <span class="field-icon">🔒</span>
-            <input type="password" id="lp" placeholder="Passwort" autocomplete="current-password">
+            <input type="password" id="lp" placeholder="Passwort / Password / كلمة المرور" autocomplete="current-password">
             <span class="pwd-toggle" onclick="togglePwd('lp')">👁️</span>
           </div>
           <div class="msg" id="lm"></div>
-          <button class="btn-main" id="lBtn" onclick="doLogin()">Anmelden</button>
+          <button class="btn-main" id="lBtn" onclick="doLogin()">
+            Anmelden
+            <div style="font-size:0.55rem;letter-spacing:0.2em;margin-top:4px;">Login</div>
+            <div style="font-size:0.65rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">تسجيل الدخول</div>
+          </button>
           <div class="divider">
             <div class="div-l"></div><span class="div-c">𓊹</span>
             <div class="div-r"></div>
           </div>
-          <button class="btn-link" onclick="sw('register')">Noch kein Konto? Jetzt registrieren</button>
+          <button type="button" class="btn-link" onclick="sw('register')">
+            Noch kein Konto? Registriere dich hier
+            <div style="font-size:0.5rem;letter-spacing:0.1em;margin-top:4px;">Don't have an account? Register here</div>
+            <div style="font-size:0.65rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">ليس لديك حساب؟ سجل هنا</div>
+          </button>
         </div>
 
         <!-- REGISTER VIEW -->
@@ -562,16 +582,24 @@
           </div>
           <div class="field">
             <span class="field-icon">🔒</span>
-            <input type="password" id="rc" placeholder="Passwort bestätigen" autocomplete="new-password">
+            <input type="password" id="rc" placeholder="Passwort bestätigen / Confirm / تأكيد" autocomplete="new-password">
             <span class="pwd-toggle" onclick="togglePwd('rc')">👁️</span>
           </div>
           <div class="msg" id="rm"></div>
-          <button class="btn-main" id="rBtn" onclick="doReg()">Registrieren</button>
+          <button class="btn-main" id="rBtn" onclick="doReg()">
+            Registrieren
+            <div style="font-size:0.55rem;letter-spacing:0.2em;margin-top:4px;">Register</div>
+            <div style="font-size:0.65rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">تسجيل حساب</div>
+          </button>
           <div class="divider">
             <div class="div-l"></div><span class="div-c">𓊹</span>
             <div class="div-r"></div>
           </div>
-          <button class="btn-link" onclick="sw('login')">Bereits ein Konto? Jetzt anmelden</button>
+          <button type="button" class="btn-link" onclick="sw('login')">
+            Bereits ein Konto? Anmelden
+            <div style="font-size:0.5rem;letter-spacing:0.1em;margin-top:4px;">Already have an account? Login</div>
+            <div style="font-size:0.65rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">لديك حساب بالفعل؟ تسجيل الدخول</div>
+          </button>
         </div>
 
         <!-- VERIFY VIEW -->

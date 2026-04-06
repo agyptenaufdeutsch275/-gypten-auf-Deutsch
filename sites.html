@@ -129,8 +129,14 @@ footer p{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;text
   <div class="header-band"></div>
   <div class="header-inner">
     <div class="header-brand">Ägypten auf Deutsch</div>
-    <div class="header-user"><div class="user-dot"></div><span id="userLabel">Wissender</span></div>
-    <button class="btn-logout" onclick="logout()">Abmelden</button>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="header-user" id="userLabel"></div>
+      <a class="btn-logout" onclick="logout()" style="display:flex;flex-direction:column;align-items:center;line-height:1.2;">
+        <span>Abmelden</span>
+        <span style="font-size:0.4rem;letter-spacing:0.1em;opacity:0.8;">Logout</span>
+        <span style="font-size:0.5rem;letter-spacing:normal;opacity:0.8;margin-top:2px;text-transform:none;" dir="rtl">تسجيل الخروج</span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -169,6 +175,7 @@ footer p{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;text
 <div class="intro reveal">
   <p class="intro-text">Entdecke die faszinierenden <strong>antiken Stätten</strong> Ägyptens</p>
   <p class="intro-sub">𓊹 Explore the Ancient Sacred Sites of Egypt 𓊹</p>
+  <p class="intro-ar" style="font-family:'Crimson Text',serif;font-size:0.9rem;letter-spacing:0.1em;color:rgba(200,148,30,.6);margin-top:6px;" dir="rtl">𓊹 استكشف المواقع الأثرية المقدسة في مصر 𓊹</p>
 </div>
 
 <!-- SITES -->
@@ -182,6 +189,7 @@ footer p{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;text
   <div class="section-head">
     <h2 class="sh-title">Die Götter Ägyptens</h2>
     <p class="sh-sub">𓊹 The Gods of Egypt — Wächter des Nils 𓊹</p>
+    <p class="sh-ar" style="font-family:'Crimson Text',serif;font-size:0.8rem;letter-spacing:0.15em;color:rgba(200,148,30,.5);margin-top:6px;" dir="rtl">𓊹 آلهة مصر — حراس النيل 𓊹</p>
   </div>
   <div class="deities-grid" id="deitiesGrid"></div>
 </section>
@@ -191,6 +199,7 @@ footer p{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;text
   <div class="section-head">
     <h2 class="sh-title">Die Zeitalter der Pharaonen</h2>
     <p class="sh-sub">𓇯 3000 Jahre Geschichte · 3000 Years of History 𓇯</p>
+    <p class="sh-ar" style="font-family:'Crimson Text',serif;font-size:0.8rem;letter-spacing:0.15em;color:rgba(200,148,30,.5);margin-top:6px;" dir="rtl">𓇯 ٣٠٠٠ عام من التاريخ 𓇯</p>
   </div>
   <div class="timeline-inner" id="timeline"></div>
 </section>
@@ -200,12 +209,15 @@ footer p{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;text
   <div class="q-band"></div>
   <blockquote>„Wer die Vergangenheit nicht kennt, kann die Zukunft nicht gestalten."</blockquote>
   <p style="font-size:0.92rem;color:rgba(200,160,60,0.45);font-style:italic;margin-bottom:12px;">"He who does not know the past cannot shape the future."</p>
+  <p style="font-size:0.92rem;color:rgba(200,160,60,0.45);font-style:italic;margin-bottom:12px;" dir="rtl">"من لا يعرف الماضي لا يستطيع صنع المستقبل."</p>
   <cite class="q-attr">— Altägyptische Weisheit · Ancient Egyptian Wisdom</cite>
+  <cite class="q-attr" style="display:block;margin-top:6px;" dir="rtl">— حكمة مصرية قديمة</cite>
 </section>
 
 <footer>
   <div class="footer-band"></div>
   <p>© 2025 Ägypten auf Deutsch — Das ewige Erbe · The Eternal Legacy</p>
+  <p style="margin-top:6px;font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.25em;color:rgba(180,130,40,0.3);" dir="rtl">الإرث الخالد</p>
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -217,22 +229,22 @@ auth.onAuthStateChanged(u=>{if(!u||!u.emailVerified){window.location.href='index
 async function logout(){document.body.style.opacity='0';await auth.signOut();setTimeout(()=>window.location.href='index.html',700);}
 
 const SITES=[
-  {id:'gem',name:'Großes Ägyptisches Museum',img:'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/bc9840210787689.671792986a1e8.jpg'},
+  {id:'gem',name:'Großes Ägyptisches Museum',en:'Grand Egyptian Museum',ar:'المتحف المصري الكبير',img:'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/bc9840210787689.671792986a1e8.jpg'},
 ];
 const DEITIES=[
-  {g:'☀',name:'Ra',en:'Ra',role:'Gott der Sonne'},
-  {g:'𓀹',name:'Osiris',en:'Osiris',role:'Herr der Unterwelt'},
-  {g:'𓁇',name:'Isis',en:'Isis',role:'Göttin der Magie'},
-  {g:'𓃣',name:'Anubis',en:'Anubis',role:'Hüter der Toten'},
-  {g:'𓅃',name:'Horus',en:'Horus',role:'Falke des Himmels'},
-  {g:'𓅝',name:'Thoth',en:'Thoth',role:'Gott der Weisheit'},
+  {g:'☀',name:'Ra',en:'Ra',ar:'رع',role:'Gott der Sonne'},
+  {g:'𓀹',name:'Osiris',en:'Osiris',ar:'أوزوريس',role:'Herr der Unterwelt'},
+  {g:'𓁇',name:'Isis',en:'Isis',ar:'إيزيس',role:'Göttin der Magie'},
+  {g:'𓃣',name:'Anubis',en:'Anubis',ar:'أنوبيس',role:'Hüter der Toten'},
+  {g:'𓅃',name:'Horus',en:'Horus',ar:'حورس',role:'Falke des Himmels'},
+  {g:'𓅝',name:'Thoth',en:'Thoth',ar:'تحوت',role:'Gott der Weisheit'},
 ];
 const ERAS=[
-  {p:'ca. 3100–2686 v. Chr.',n:'Frühdynastische Zeit',en:'Early Dynastic Period',d:'Vereinigung Ober- und Unterägyptens. Die Hieroglyphenschrift entsteht.'},
-  {p:'ca. 2686–2181 v. Chr.',n:'Das Alte Reich',en:'The Old Kingdom',d:'Das Zeitalter der Pyramiden. Cheops baut das letzte Weltwunder der Antike.'},
-  {p:'ca. 2055–1650 v. Chr.',n:'Das Mittlere Reich',en:'The Middle Kingdom',d:'Eine Renaissance der Kunst und Literatur. Expansion nach Nubien.'},
-  {p:'ca. 1550–1070 v. Chr.',n:'Das Neue Reich',en:'The New Kingdom',d:'Ramses II., Tutanchamun, Nofretete — das goldene Zeitalter Ägyptens.'},
-  {p:'ca. 332–30 v. Chr.',n:'Die Ptolemäische Zeit',en:'The Ptolemaic Era',d:'Kleopatra VII., die letzte Pharaonin. Ende dreitausend Jahre Pharaonenherrschaft.'},
+  {p:'ca. 3100–2686 v. Chr.',n:'Frühdynastische Zeit',en:'Early Dynastic Period',ar:'عصر الأسرات المبكر',d:'Vereinigung Ober- und Unterägyptens. Die Hieroglyphenschrift entsteht.'},
+  {p:'ca. 2686–2181 v. Chr.',n:'Das Alte Reich',en:'The Old Kingdom',ar:'الدولة القديمة',d:'Das Zeitalter der Pyramiden. Cheops baut das letzte Weltwunder der Antike.'},
+  {p:'ca. 2055–1650 v. Chr.',n:'Das Mittlere Reich',en:'The Middle Kingdom',ar:'الدولة الوسطى',d:'Eine Renaissance der Kunst und Literatur. Expansion nach Nubien.'},
+  {p:'ca. 1550–1070 v. Chr.',n:'Das Neue Reich',en:'The New Kingdom',ar:'الدولة الحديثة',d:'Ramses II., Tutanchamun, Nofretete — das goldene Zeitalter Ägyptens.'},
+  {p:'ca. 332–30 v. Chr.',n:'Die Ptolemäische Zeit',en:'The Ptolemaic Era',ar:'العصر البطلمي',d:'Kleopatra VII., die letzte Pharaonin. Ende dreitausend Jahre Pharaonenherrschaft.'},
 ];
 
 function init(){
@@ -242,7 +254,13 @@ function init(){
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-name">${s.name}</div>
-        <button class="sc-btn">Entdecken</button>
+        <div class="sc-en" style="font-size:0.75rem; color:rgba(220,180,80,0.8); margin-top:2px;">${s.en}</div>
+        <div class="sc-ar" style="font-size:0.85rem; color:rgba(200,160,60,0.7); margin-top:2px;" dir="rtl">${s.ar}</div>
+        <button class="sc-btn" style="display:flex;flex-direction:column;align-items:center;margin-top:12px;line-height:1.2;">
+          <span>Entdecken</span>
+          <span style="font-size:0.5rem;letter-spacing:0.1em;opacity:0.8;margin-top:2px;">Discover</span>
+          <span style="font-size:0.6rem;letter-spacing:normal;opacity:0.8;margin-top:2px;text-transform:none;" dir="rtl">اكتشف</span>
+        </button>
       </div>
     </div>`).join('');
   document.getElementById('deitiesGrid').innerHTML=DEITIES.map(d=>`
@@ -250,6 +268,7 @@ function init(){
       <span class="dc-glyph">${d.g}</span>
       <div class="dc-name">${d.name}</div>
       <div class="dc-en">${d.en}</div>
+      <div class="dc-ar" style="font-size:0.75rem; color:rgba(200,160,60,0.6); margin-top:2px;" dir="rtl">${d.ar}</div>
       <div class="dc-role">${d.role}</div>
     </div>`).join('');
   document.getElementById('timeline').innerHTML=ERAS.map(e=>`
@@ -258,6 +277,7 @@ function init(){
         <div class="era-period">${e.p}</div>
         <div class="era-name">${e.n}</div>
         <div class="era-en">${e.en}</div>
+        <div class="era-ar" style="font-size:0.85rem; color:rgba(200,160,60,0.7); margin-bottom:5px;" dir="rtl">${e.ar}</div>
         <div class="era-desc">${e.d}</div>
       </div>
       <div class="era-dot"></div>
