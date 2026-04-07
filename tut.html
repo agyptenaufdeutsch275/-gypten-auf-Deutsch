@@ -819,6 +819,13 @@
         btn.textContent = isAR ? 'أقل ▲' : 'Weniger ▲';
       }
     }
+    // Fix for browser back/forward navigation brown screen issue
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+        document.body.style.opacity = '';
+        document.body.classList.add('ready');
+      }
+    });
   </script>
 </body>
 

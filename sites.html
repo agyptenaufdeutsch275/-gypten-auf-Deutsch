@@ -798,6 +798,13 @@
       document.body.style.cssText += 'opacity:0;transition:opacity .5s';
       setTimeout(() => window.location.href = id === 'gem' ? 'site-detail.html' : id + '.html', 520);
     }
+    // Fix for browser back button (BF Cache) brown screen issue
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+        document.body.style.opacity = '';
+        document.body.classList.add('ready');
+      }
+    });
   </script>
 </body>
 
