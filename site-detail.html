@@ -551,8 +551,8 @@
 
   <header class="site-header">
     <div class="header-band"></div>
-    <div class="header-inner">
-      <a class="back-btn" href="sites.html" style="display:flex;align-items:center;gap:12px;line-height:1.2;">
+    <div class="header-inner" style="position:relative; min-height:130px;">
+      <a class="back-btn" href="sites.html" style="display:flex;align-items:center;gap:12px;line-height:1.2; position:relative; z-index:2;">
         <span class="back-arr">←</span>
         <div style="display:flex;flex-direction:column;align-items:flex-start;">
           <span>Zurück</span>
@@ -561,8 +561,10 @@
             dir="rtl">عودة</span>
         </div>
       </a>
-      <div class="header-brand">Ägypten auf Deutsch</div>
-      <div style="width:90px;"></div>
+      <a href="sites.html" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); z-index:1;">
+        <img src="https://res.cloudinary.com/dzkxjph6x/image/upload/v1775613054/IMG-20260408-WA0004-removebg-preview_kvrt8b.png" alt="Logo" style="height:120px; filter: drop-shadow(0 4px 16px rgba(200,160,60,0.5));">
+      </a>
+      <div style="width:90px; position:relative; z-index:2;"></div>
     </div>
   </header>
 
@@ -865,5 +867,3 @@
 </body>
 
 </html>
-
-video

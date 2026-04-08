@@ -615,8 +615,11 @@
 
   <header class="site-header">
     <div class="header-band"></div>
-    <div class="header-inner">
-      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+    <div class="header-inner" style="position:relative; min-height: 130px;">
+      <a href="sites.html" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); z-index:1;">
+        <img src="https://res.cloudinary.com/dzkxjph6x/image/upload/v1775613054/IMG-20260408-WA0004-removebg-preview_kvrt8b.png" alt="Logo" style="height:120px; filter: drop-shadow(0 4px 16px rgba(200,160,60,0.5));">
+      </a>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap; position:relative; z-index:2;">
         <div class="header-brand">Ägypten auf Deutsch</div>
         <div style="display:flex;align-items:center;gap:10px;">
           <a class="ig-link" href="https://www.instagram.com/judy_mohamedd00?igsh=MWRkZXU0Z2Mxd311bQ==" target="_blank">
@@ -631,7 +634,7 @@
           </a>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:12px;">
+      <div style="display:flex;align-items:center;gap:12px; position:relative; z-index:2;">
         <div class="header-user" id="userLabel"></div>
         <a class="btn-logout" onclick="logout()"
           style="display:flex;flex-direction:column;align-items:center;line-height:1.2;">
