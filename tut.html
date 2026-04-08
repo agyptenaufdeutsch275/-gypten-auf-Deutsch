@@ -662,24 +662,32 @@
       <div class="video-frame">
         <div class="video-top-band"></div>
         <div id="videoArea">
-          <div class="video-placeholder"
-            onclick="alert('Füge eine YouTube-ID in den Code ein — Add a YouTube ID in the code')">
-            <div class="vp-play"></div>
-            <div class="vp-text">
-              <div>Video hinzufügen — Add Video</div>
-              <div
-                style="font-size:0.7rem;text-transform:none;letter-spacing:normal;font-family:'Crimson Text',serif;color:rgba(200,148,30,.6);margin-top:4px;"
-                dir="rtl">أضف فيديو</div>
-            </div>
-            <div class="vp-code">videoId: 'YOUTUBE_ID'</div>
-          </div>
+          <script>
+            // ⬇️ PUT YOUR CLOUDINARY VIDEO LINK HERE ⬇️
+            const cloudinaryLink = '';
+
+            if (cloudinaryLink) {
+              document.write(`
+                <video width="100%" controls style="aspect-ratio: 16/9; display: block; background: #000;">
+                  <source src="${cloudinaryLink}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              `);
+            } else {
+              document.write(`
+                <div class="video-placeholder" onclick="alert('Füge den Cloudinary-Link im Code ein — Add the Cloudinary link in the code')">
+                  <div class="vp-play"></div>
+                  <div class="vp-text">
+                    <div>Video hinzufügen — Add Video</div>
+                    <div style="font-size:0.7rem;text-transform:none;letter-spacing:normal;font-family:\\'Crimson Text\\',serif;color:rgba(200,148,30,.6);margin-top:4px;" dir="rtl">أضف فيديو</div>
+                  </div>
+                  <div class="vp-code" style="font-size:0.65rem;">const cloudinaryLink = 'YOUR_LINK_HERE';</div>
+                </div>
+              `);
+            }
+          </script>
         </div>
-        <div class="video-caption" style="display:block;line-height:1.6;">
-          <div>Füge eine YouTube-ID im videoId-Feld hinzu — Add a YouTube ID</div>
-          <div
-            style="font-size:0.6rem;text-transform:none;letter-spacing:normal;font-family:'Crimson Text',serif;margin-top:2px;"
-            dir="rtl">أضف معرّف يوتيوب</div>
-        </div>
+
       </div>
     </div>
 
