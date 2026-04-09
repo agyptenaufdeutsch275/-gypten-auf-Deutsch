@@ -543,6 +543,15 @@
       </div>
     </div>
 
+    <!-- HOW TO LOGIN GUIDE BUTTON -->
+    <div style="margin-bottom:16px;text-align:center;animation:cardIn 1s ease forwards .55s;opacity:0;transform:translateY(12px);">
+      <button id="guideBtn" onclick="goGuide()" style="background:linear-gradient(160deg,#3E2208 0%,#2A1606 100%);border:1px solid rgba(180,130,40,0.4);border-radius:3px;padding:10px 26px;color:rgba(200,160,60,0.8);font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;cursor:pointer;transition:all .35s;box-shadow:0 4px 16px rgba(0,0,0,0.4);" onmouseover="this.style.borderColor='rgba(200,160,60,0.65)';this.style.color='#F0D878';this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(120,80,0,0.4)'" onmouseout="this.style.borderColor='rgba(180,130,40,0.4)';this.style.color='rgba(200,160,60,0.8)';this.style.transform='none';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.4)'">
+        ❓ Wie man sich anmeldet
+        <div style="font-size:0.48rem;letter-spacing:0.15em;margin-top:4px;">How to Log In Guide</div>
+        <div style="font-size:0.58rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">دليل تسجيل الدخول</div>
+      </button>
+    </div>
+
     <!-- LOGIN / REGISTER CARD -->
     <div class="card">
       <div class="card-top-band"></div>
@@ -614,11 +623,29 @@
         <!-- VERIFY VIEW -->
         <div id="vVer" class="view vfy">
           <span class="vfy-ic">✉️</span>
-          <h2 class="vfy-t">Siegel Versandt</h2>
-          <p class="vfy-p">Wir haben dir eine E-Mail geschickt. Bitte bestätige deine Adresse.<br><em>We sent you a
-              confirmation email. Please check your inbox.</em></p>
-          <button class="btn-main" onclick="sw('login')">Zur Anmeldung</button>
-          <button class="btn-link" onclick="doResend()">Erneut senden</button>
+          <h2 class="vfy-t">
+            Siegel Versandt
+            <span style="display:block;font-size:0.5rem;letter-spacing:0.35em;color:rgba(200,160,60,0.6);text-transform:uppercase;margin-top:8px;">Seal Dispatched</span>
+            <span style="display:block;font-size:0.65rem;color:rgba(200,160,60,0.6);margin-top:4px;text-transform:none;letter-spacing:normal;" dir="rtl">تم إرسال الختم</span>
+          </h2>
+          <p class="vfy-p">
+            Wir haben dir eine E-Mail geschickt. Bitte bestätige deine Adresse.<br>
+            <span style="display:inline-block;margin-top:4px;color:rgba(220,180,80,0.85);">Überprüfe den Spam-Ordner in deiner Gmail-App, um die E-Mail zu finden.</span><br>
+            <em style="display:inline-block;margin-top:8px;">We sent you a confirmation email. Please check your inbox.</em><br>
+            <em style="display:inline-block;margin-top:4px;color:rgba(220,180,80,0.85);">Check the spam tab in your Gmail app to find the verification email.</em><br>
+            <span style="display:inline-block;margin-top:8px;" dir="rtl">لقد أرسلنا إليك بريدًا إلكترونيًا للتأكيد. يرجى التحقق من صندوق الوارد الخاص بك.</span><br>
+            <span style="display:inline-block;margin-top:4px;color:rgba(220,180,80,0.85);" dir="rtl">تحقق من مجلد الرسائل الجانبية (سبام) في تطبيق Gmail للعثور على رسالة التأكيد.</span>
+          </p>
+          <button class="btn-main" onclick="sw('login')">
+            Zur Anmeldung
+            <div style="font-size:0.55rem;letter-spacing:0.2em;margin-top:4px;">To Login</div>
+            <div style="font-size:0.65rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">إلى تسجيل الدخول</div>
+          </button>
+          <button class="btn-link" onclick="doResend()">
+            Erneut senden
+            <div style="font-size:0.5rem;letter-spacing:0.1em;margin-top:4px;">Resend Verification</div>
+            <div style="font-size:0.65rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">إعادة الإرسال</div>
+          </button>
         </div>
 
       </div>
@@ -646,6 +673,7 @@
     async function doResend() { try { const u = auth.currentUser; if (u) await u.sendEmailVerification(); alert('E-Mail erneut gesendet!'); } catch { alert('Fehler. Bitte erneut versuchen.'); } }
     function sw(t) { ['vLog', 'vReg', 'vVer'].forEach(i => document.getElementById(i).classList.remove('on')); document.getElementById(t === 'login' ? 'vLog' : t === 'register' ? 'vReg' : 'vVer').classList.add('on'); }
     function go(url) { document.querySelector('.page').style.cssText += 'transition:opacity .6s;opacity:0'; setTimeout(() => window.location.href = url, 640); }
+    function goGuide() { document.querySelector('.page').style.cssText += 'transition:opacity .6s;opacity:0'; setTimeout(() => window.location.href = 'how-to-login.html', 640); }
     document.addEventListener('keydown', e => { if (e.key !== 'Enter') return; if (document.getElementById('vReg').classList.contains('on')) doReg(); else if (document.getElementById('vLog').classList.contains('on')) doLogin(); });
   </script>
 </body>

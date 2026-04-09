@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ägypten auf Deutsch — Wie man sich anmeldet</title>
+  <meta name="description" content="Schritt-für-Schritt-Anleitung zur Anmeldung auf Ägypten auf Deutsch. Step-by-step guide to logging in. دليل خطوة بخطوة لتسجيل الدخول.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { background: #1A0E04; scroll-behavior: smooth; }
+
+    body { font-family: 'Crimson Text', serif; }
+
+    /* ── BG ── */
+    .bg {
+      position: fixed; inset: 0; z-index: 0;
+    }
+    .bg img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 40%;
+    }
+    .bg-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(10,5,2,0.50) 0%,
+        rgba(10,5,2,0.30) 30%,
+        rgba(10,5,2,0.65) 70%,
+        rgba(10,5,2,0.90) 100%);
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative; z-index: 10;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center;
+      padding: 36px 20px 60px;
+    }
+
+    /* ── BRAND ── */
+    .brand {
+      text-align: center; margin-bottom: 10px;
+      animation: brandIn 1s ease forwards .2s;
+      opacity: 0; transform: translateY(-20px);
+    }
+    .brand-title {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 900; line-height: 1.1; letter-spacing: 0.06em;
+      background: linear-gradient(180deg, #FFE87A 0%, #D4A020 40%, #F0C030 65%, #B07818 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 12px rgba(180,120,0,0.6));
+    }
+    @keyframes brandIn { to { opacity:1; transform:none; } }
+
+    /* ── PAGE TITLE ── */
+    .page-title-wrap {
+      text-align: center; margin: 24px 0 28px;
+      animation: fadeUp 1s ease forwards .4s; opacity: 0; transform: translateY(16px);
+    }
+    .page-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.1rem, 3vw, 1.7rem);
+      font-weight: 700; letter-spacing: 0.1em;
+      color: #F0D878;
+      text-shadow: 0 2px 16px rgba(180,120,0,0.7);
+    }
+    .page-title-sub {
+      font-size: 0.75rem; color: rgba(200,160,60,0.55);
+      letter-spacing: 0.35em; text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .title-divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 14px auto; max-width: 400px;
+    }
+    .title-divider-line { flex:1; height:1px; background: rgba(180,130,40,0.4); }
+    .title-divider-glyph { color: rgba(200,160,60,0.6); font-size: 1.1rem; }
+
+    @keyframes fadeUp { to { opacity:1; transform:none; } }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher {
+      display: flex; gap: 10px; justify-content: center;
+      margin-bottom: 36px;
+      animation: fadeUp 1s ease forwards .5s; opacity: 0; transform: translateY(12px);
+      flex-wrap: wrap;
+    }
+    .lang-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 10px 22px;
+      background: linear-gradient(160deg, #3E2208 0%, #2A1606 100%);
+      border: 1px solid rgba(180,130,40,0.35);
+      border-radius: 3px;
+      color: rgba(200,160,60,0.65);
+      cursor: pointer;
+      transition: all .35s;
+      position: relative; overflow: hidden;
+    }
+    .lang-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(200,160,60,0.05), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .lang-btn:hover::before { opacity: 1; }
+    .lang-btn:hover {
+      border-color: rgba(200,160,60,0.6);
+      color: #F0D080;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(180,120,0,0.3);
+    }
+    .lang-btn.active {
+      background: linear-gradient(160deg, #5C3818 0%, #3E2208 100%);
+      border-color: rgba(200,160,60,0.6);
+      color: #F0D878;
+      box-shadow: 0 4px 24px rgba(180,120,0,0.35), inset 0 1px 0 rgba(200,160,60,0.15);
+    }
+    .lang-flag { font-size: 1.1rem; margin-right: 6px; }
+
+    /* ── STEPS CONTAINER ── */
+    .steps-wrap {
+      width: 100%; max-width: 760px;
+      animation: fadeUp 1s ease forwards .6s; opacity: 0; transform: translateY(20px);
+    }
+
+    /* ── STEP CARD ── */
+    .step-card {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: linear-gradient(160deg, rgba(60,34,8,0.85) 0%, rgba(40,20,6,0.90) 100%);
+      border: 1px solid rgba(180,130,40,0.3);
+      border-left: 3px solid rgba(200,160,60,0.55);
+      border-radius: 4px;
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      backdrop-filter: blur(6px);
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .step-card::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(200,160,60,0.3), transparent);
+    }
+    .step-card:hover {
+      border-left-color: rgba(212,175,55,0.85);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(180,130,40,0.15);
+      transform: translateX(4px);
+    }
+    .step-number {
+      flex-shrink: 0;
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, #C8941E, #8A6010);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem; font-weight: 700;
+      color: #FFF8E0;
+      box-shadow: 0 2px 12px rgba(180,120,0,0.5);
+      margin-top: 2px;
+    }
+    .step-body { flex: 1; }
+    .step-text {
+      font-size: 1.02rem; line-height: 1.72;
+      color: rgba(230,200,140,0.88);
+    }
+    .step-text strong, .step-text b {
+      color: #F0D878; font-weight: 600;
+    }
+    .step-text ul {
+      margin: 10px 0 4px 14px;
+      list-style: none;
+    }
+    .step-text ul li {
+      position: relative; padding-left: 18px; margin-bottom: 6px;
+      color: rgba(220,185,120,0.85);
+    }
+    .step-text ul li::before {
+      content: '𓊙'; position: absolute; left: 0;
+      color: rgba(200,160,60,0.6); font-size: 0.75rem; top: 3px;
+    }
+    .step-icon {
+      font-size: 1.4rem; margin-bottom: 6px; display: block;
+    }
+    [dir="rtl"] .step-text { text-align: right; }
+    [dir="rtl"] .step-text ul { margin: 10px 14px 4px 0; }
+    [dir="rtl"] .step-text ul li { padding-left: 0; padding-right: 18px; }
+    [dir="rtl"] .step-text ul li::before { left: auto; right: 0; }
+
+    /* Highlight keyword pill */
+    .pill {
+      display: inline-block;
+      background: rgba(200,148,30,0.18);
+      border: 1px solid rgba(200,148,30,0.4);
+      border-radius: 2px;
+      padding: 1px 7px;
+      font-size: 0.9em;
+      color: #F0D050;
+    }
+
+    /* ── CONGRATULATIONS CARD ── */
+    .congrats-card {
+      text-align: center;
+      background: linear-gradient(160deg, rgba(30,58,110,0.5) 0%, rgba(20,40,80,0.6) 100%);
+      border: 1px solid rgba(80,120,200,0.35);
+      border-top: 3px solid rgba(100,150,240,0.5);
+      border-radius: 4px;
+      padding: 28px 24px;
+      margin-top: 10px;
+      backdrop-filter: blur(8px);
+      position: relative; overflow: hidden;
+    }
+    .congrats-card::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(100,150,255,0.4), transparent);
+    }
+    .congrats-glyph { font-size: 2.6rem; display: block; margin-bottom: 12px; }
+    .congrats-text {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+      color: #A8C8FF;
+      letter-spacing: 0.06em; line-height: 1.7;
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-wrap {
+      width: 100%; max-width: 760px;
+      margin-top: 40px;
+      animation: fadeUp 1s ease forwards .8s; opacity: 0; transform: translateY(20px);
+    }
+    .video-label {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(200,160,60,0.6);
+      margin-bottom: 14px;
+    }
+    .video-container {
+      position: relative;
+      background: rgba(20,10,3,0.7);
+      border: 2px solid rgba(180,130,40,0.4);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.8);
+    }
+    .video-container::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:3px;
+      background: linear-gradient(90deg,#8B2810,#C8941E,#1E3A6E,#C8941E,#1E5C38,#C8941E,#8B2810);
+      z-index:2;
+    }
+    .video-container video {
+      width: 100%; display: block;
+      max-height: 480px; object-fit: contain;
+      background: #0A0502;
+    }
+
+    /* ── BACK / NAV BUTTONS ── */
+    .nav-buttons {
+      display: flex; gap: 14px; justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 44px;
+      animation: fadeUp 1s ease forwards 1s; opacity: 0; transform: translateY(16px);
+    }
+    .btn-back {
+      padding: 13px 32px;
+      background: linear-gradient(to bottom, #5C3818, #3E2208, #4A2C10);
+      border: 1px solid rgba(180,130,40,0.5);
+      border-top: 1px solid rgba(200,160,60,0.25);
+      color: #F0D878;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem; letter-spacing: 0.22em; font-weight: 600;
+      cursor: pointer; border-radius: 3px; text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .btn-back::after {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(to bottom, rgba(200,160,60,0.08), transparent);
+      opacity:0; transition:opacity .3s;
+    }
+    .btn-back:hover::after { opacity:1; }
+    .btn-back:hover {
+      border-color: rgba(200,160,60,0.7);
+      box-shadow: 0 6px 30px rgba(120,80,0,0.5);
+      transform: translateY(-2px);
+    }
+    .btn-back:active { transform: none; }
+
+    .btn-goto-login {
+      padding: 13px 32px;
+      background: linear-gradient(to bottom, #3A70C0, #1E4A9E, #2A5AB0);
+      border: 1px solid rgba(80,120,200,0.4);
+      border-top: 1px solid rgba(120,170,240,0.3);
+      color: #FFFFFF;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem; letter-spacing: 0.22em; font-weight: 600;
+      cursor: pointer; border-radius: 3px; text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(20,50,150,0.5);
+      transition: all .3s;
+    }
+    .btn-goto-login:hover {
+      background: linear-gradient(to bottom, #4A80D0, #2A5AAE, #3A6AC0);
+      box-shadow: 0 6px 28px rgba(20,50,150,0.7);
+      transform: translateY(-2px);
+    }
+    .btn-goto-login:active { transform: none; }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      margin-top: 40px; text-align: center;
+      animation: fadeUp 1s ease forwards 1.1s; opacity: 0;
+    }
+    .page-footer p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: rgba(200,160,60,0.35);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .step-card { flex-direction: column; gap: 12px; padding: 16px 16px; }
+      .step-number { width: 36px; height: 36px; font-size: 0.9rem; }
+      .page { padding: 28px 14px 50px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BG -->
+  <div class="bg">
+    <img src="https://images.unsplash.com/photo-1632944398987-494eebe663be?auto=format&fit=crop&q=90&w=1920"
+      alt="Pyramiden bei Sonnenuntergang"
+      onerror="this.src='https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=90&w=1920'">
+    <div class="bg-overlay"></div>
+  </div>
+
+  <div class="page" id="mainPage">
+
+    <!-- BRAND -->
+    <div class="brand">
+      <h1 class="brand-title">Ägypten<br>auf Deutsch</h1>
+    </div>
+
+    <!-- PAGE TITLE -->
+    <div class="page-title-wrap">
+      <div class="page-title" id="pageTitle">Wie man sich anmeldet</div>
+      <div class="page-title-sub" id="pageTitleSub">Schritt-für-Schritt-Anleitung</div>
+      <div class="title-divider">
+        <div class="title-divider-line"></div>
+        <span class="title-divider-glyph">𓊹</span>
+        <div class="title-divider-line"></div>
+      </div>
+    </div>
+
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switcher" role="group" aria-label="Language / Sprache / اللغة">
+      <button class="lang-btn active" id="btnDe" onclick="setLang('de')" aria-pressed="true">
+        <span class="lang-flag">🇩🇪</span>Deutsch
+      </button>
+      <button class="lang-btn" id="btnEn" onclick="setLang('en')" aria-pressed="false">
+        <span class="lang-flag">🇬🇧</span>English
+      </button>
+      <button class="lang-btn" id="btnAr" onclick="setLang('ar')" aria-pressed="false">
+        <span class="lang-flag">🇪🇬</span>عربي
+      </button>
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps-wrap" id="stepsWrap"></div>
+
+    <!-- VIDEO -->
+    <div class="video-wrap">
+      <div class="video-label" id="videoLabel">🎬 Erklärvideo · Tutorial Video · فيديو الشرح</div>
+      <div class="video-container">
+        <video controls playsinline preload="metadata"
+          src="https://res.cloudinary.com/dzkxjph6x/video/upload/v1775754830/lv_0_20260409191011_hr8ufv.mp4">
+          Dein Browser unterstützt das Video nicht. / Your browser does not support video. / متصفحك لا يدعم الفيديو.
+        </video>
+      </div>
+    </div>
+
+    <!-- NAV BUTTONS -->
+    <div class="nav-buttons">
+      <button class="btn-back" id="btnBack" onclick="goBack()">
+        ← Zurück
+        <div style="font-size:0.5rem;letter-spacing:0.15em;margin-top:3px;">Back to Home</div>
+        <div style="font-size:0.6rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">العودة للرئيسية</div>
+      </button>
+      <button class="btn-goto-login" id="btnGotoLogin" onclick="goLogin()">
+        Zur Anmelde-Seite
+        <div style="font-size:0.5rem;letter-spacing:0.15em;margin-top:3px;">Go to Login &amp; Register</div>
+        <div style="font-size:0.6rem;letter-spacing:normal;text-transform:none;margin-top:2px;" dir="rtl">الذهاب لصفحة التسجيل</div>
+      </button>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="page-footer">
+      <p>𓊹 Das ewige Erbe Ägyptens · The Eternal Legacy of Egypt 𓊹</p>
+    </div>
+
+  </div>
+
+  <script>
+    /* ── CONTENT DATA ── */
+    const STEPS = {
+      de: {
+        dir: 'ltr',
+        pageTitle: 'Wie man sich anmeldet',
+        pageTitleSub: 'Schritt-für-Schritt-Anleitung',
+        steps: [
+          {
+            icon: '🔑',
+            text: `Um zur Anmelde- und Registrierungsseite zu gelangen, drücke auf die Schaltfläche <span class="pill">"Zur Anmelde- und Registrierungsseite"</span> am Ende dieser Seite.`
+          },
+          {
+            icon: '📄',
+            text: `Nachdem du auf die Schaltfläche am Ende dieser Seite geklickt hast, gelangst du zur <strong>Anmelde- und Registrierungsseite</strong>.`
+          },
+          {
+            icon: '📝',
+            text: `Falls du noch kein Konto für diese Website hast, klicke auf <span class="pill">"Noch kein Konto? Registriere dich hier"</span> — dann gelangst du zur Registrierungsseite.`
+          },
+          {
+            icon: '✏️',
+            text: `Jetzt trage folgende Informationen ein:
+              <ul>
+                <li>Eine <strong>E-Mail-Adresse</strong>, über die du E-Mails empfangen kannst</li>
+                <li>Ein <strong>neues Passwort</strong> erstellen</li>
+                <li>Das erstellte Passwort <strong>bestätigen</strong></li>
+              </ul>`
+          },
+          {
+            icon: '✉️',
+            text: `Es wird eine <strong>Bestätigungs-E-Mail</strong> an dich gesendet. So findest du sie:
+              <ul>
+                <li>Öffne die <strong>Gmail-App</strong> und drücke auf die <strong>drei Striche</strong> oben links oder rechts (je nach App-Sprache)</li>
+                <li>Suche den <span class="pill">Spam-Ordner</span> und öffne ihn — aktualisiere ihn falls nötig</li>
+                <li>Dort findest du eine E-Mail von <strong>"noreply"</strong> — öffne sie und klicke auf den Link in der E-Mail (dieser Link ist <strong>vollständig sicher</strong>)</li>
+              </ul>`
+          },
+          {
+            icon: '↩️',
+            text: `Kehre zur Website zurück und klicke auf die Schaltfläche <span class="pill">"Zur Anmeldung"</span>.`
+          },
+          {
+            icon: '🔐',
+            text: `Gib deine <strong>E-Mail-Adresse</strong> und das <strong>Passwort</strong> ein, das du erstellt hast.`
+          }
+        ],
+        congrats: '🏺 Herzlichen Glückwunsch! Du kannst jetzt das Abenteuer in die Geschichte Ägyptens beginnen.',
+        videoLabel: '🎬 Erklärvideo'
+      },
+      en: {
+        dir: 'ltr',
+        pageTitle: 'How to Log In to the Website',
+        pageTitleSub: 'Step-by-Step Guide',
+        steps: [
+          {
+            icon: '🔑',
+            text: `To go to the login and registration page, press the button called <span class="pill">"Go to Login &amp; Registration Page"</span> at the bottom of this page.`
+          },
+          {
+            icon: '📄',
+            text: `After pressing the button at the bottom of this page, you will arrive at the <strong>Login &amp; Registration Page</strong>.`
+          },
+          {
+            icon: '📝',
+            text: `If you don't have an account for this website yet, click on <span class="pill">"Don't have an account? Register here"</span> and you will be taken to the registration page.`
+          },
+          {
+            icon: '✏️',
+            text: `Now fill in the following:
+              <ul>
+                <li>An <strong>email address</strong> that you own and can receive emails on</li>
+                <li><strong>Create a new password</strong></li>
+                <li><strong>Confirm</strong> the password you created</li>
+              </ul>`
+          },
+          {
+            icon: '✉️',
+            text: `A <strong>verification email</strong> will be sent to you. Here's how to find it:
+              <ul>
+                <li>Open the <strong>Gmail app</strong> and tap the <strong>three lines</strong> at the top left or right (depending on your app language)</li>
+                <li>Find the <span class="pill">Spam tab</span> and click on it — refresh it if needed</li>
+                <li>You will find an email from <strong>"noreply"</strong> — open it and click the link inside (this link is <strong>completely secure</strong>)</li>
+              </ul>`
+          },
+          {
+            icon: '↩️',
+            text: `Go back to the website and click the button <span class="pill">"To Login"</span>.`
+          },
+          {
+            icon: '🔐',
+            text: `Enter your <strong>email address</strong> and the <strong>password</strong> you created.`
+          }
+        ],
+        congrats: '🏺 Congratulations! You can now enter the adventure to the history of Egypt.',
+        videoLabel: '🎬 Tutorial Video'
+      },
+      ar: {
+        dir: 'rtl',
+        pageTitle: 'كيفية تسجيل الدخول إلى الموقع',
+        pageTitleSub: 'دليل خطوة بخطوة',
+        steps: [
+          {
+            icon: '🔑',
+            text: `للوصول إلى صفحة تسجيل الدخول والتسجيل، اضغط على الزر الذي يُسمى <span class="pill">"الذهاب إلى صفحة تسجيل الدخول والتسجيل"</span> في نهاية هذه الصفحة.`
+          },
+          {
+            icon: '📄',
+            text: `بعد الضغط على الزر في نهاية هذه الصفحة، ستصل إلى <strong>صفحة تسجيل الدخول والتسجيل</strong>.`
+          },
+          {
+            icon: '📝',
+            text: `إذا لم يكن لديك حساب في هذا الموقع من قبل، انقر على <span class="pill">"ليس لديك حساب؟ سجل هنا"</span> وستنتقل إلى صفحة التسجيل.`
+          },
+          {
+            icon: '✏️',
+            text: `الآن أدخل المعلومات التالية:
+              <ul>
+                <li>عنوان <strong>بريد إلكتروني</strong> تملكه ويمكنك استلام الرسائل عليه</li>
+                <li>إنشاء <strong>كلمة مرور جديدة</strong></li>
+                <li><strong>تأكيد</strong> كلمة المرور التي أنشأتها</li>
+              </ul>`
+          },
+          {
+            icon: '✉️',
+            text: `سيتم إرسال <strong>بريد إلكتروني للتحقق</strong> إليك. إليك كيفية إيجاده:
+              <ul>
+                <li>افتح تطبيق <strong>Gmail</strong> واضغط على <strong>الخطوط الثلاثة</strong> في أعلى اليمين أو اليسار (حسب لغة التطبيق)</li>
+                <li>ابحث عن <span class="pill">مجلد الرسائل الجانبية (سبام)</span> وانقر عليه — حدّثه إذا لزم الأمر</li>
+                <li>ستجد بريدًا إلكترونيًا من <strong>"noreply"</strong> — افتحه وانقر على الرابط داخله (هذا الرابط <strong>آمن تمامًا</strong>)</li>
+              </ul>`
+          },
+          {
+            icon: '↩️',
+            text: `ارجع إلى الموقع وانقر على زر <span class="pill">"إلى تسجيل الدخول"</span>.`
+          },
+          {
+            icon: '🔐',
+            text: `أدخل <strong>عنوان بريدك الإلكتروني</strong> و<strong>كلمة المرور</strong> التي أنشأتها.`
+          }
+        ],
+        congrats: '🏺 تهانينا! يمكنك الآن الدخول إلى مغامرة تاريخ مصر.',
+        videoLabel: '🎬 فيديو الشرح'
+      }
+    };
+
+    let currentLang = 'de';
+
+    function setLang(lang) {
+      currentLang = lang;
+      // Update active btn
+      ['de','en','ar'].forEach(l => {
+        const btn = document.getElementById('btn' + l.charAt(0).toUpperCase() + l.slice(1));
+        btn.classList.toggle('active', l === lang);
+        btn.setAttribute('aria-pressed', l === lang ? 'true' : 'false');
+      });
+      renderSteps(lang);
+    }
+
+    function renderSteps(lang) {
+      const data = STEPS[lang];
+      const wrap = document.getElementById('stepsWrap');
+      const dir = data.dir;
+
+      // Update page title
+      document.getElementById('pageTitle').textContent = data.pageTitle;
+      document.getElementById('pageTitleSub').textContent = data.pageTitleSub;
+      document.getElementById('videoLabel').textContent = data.videoLabel;
+      document.documentElement.dir = dir;
+
+      // Build steps HTML
+      let html = '';
+      data.steps.forEach((s, i) => {
+        html += `
+          <div class="step-card" dir="${dir}">
+            <div class="step-number">${i + 1}</div>
+            <div class="step-body">
+              <span class="step-icon">${s.icon}</span>
+              <div class="step-text">${s.text}</div>
+            </div>
+          </div>`;
+      });
+
+      // Congrats
+      html += `
+        <div class="congrats-card" dir="${dir}">
+          <span class="congrats-glyph">🎊</span>
+          <div class="congrats-text">${data.congrats}</div>
+        </div>`;
+
+      wrap.innerHTML = html;
+
+      // Animate in
+      wrap.style.opacity = '0';
+      wrap.style.transform = 'translateY(16px)';
+      requestAnimationFrame(() => {
+        wrap.style.transition = 'opacity .5s ease, transform .5s ease';
+        wrap.style.opacity = '1';
+        wrap.style.transform = 'none';
+      });
+    }
+
+    function goBack() {
+      const page = document.getElementById('mainPage');
+      page.style.transition = 'opacity .5s';
+      page.style.opacity = '0';
+      setTimeout(() => { window.location.href = 'index.html'; }, 520);
+    }
+
+    function goLogin() {
+      const page = document.getElementById('mainPage');
+      page.style.transition = 'opacity .5s';
+      page.style.opacity = '0';
+      setTimeout(() => { window.location.href = 'index.html'; }, 520);
+    }
+
+    // Init
+    renderSteps('de');
+  </script>
+
+</body>
+</html>
