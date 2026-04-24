@@ -382,7 +382,7 @@
 
     .desc-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 28px;
     }
 
@@ -756,7 +756,47 @@
             <p>Und vielleicht...</p>
             <p>war das erst der Anfang... nicht das Ende.</p>
           </div>
-          <button class="read-more-btn" id="rmDE" onclick="toggleRM('descDE','rmDE',false)">Mehr lesen ▼</button>
+          <button class="read-more-btn" id="rmDE" onclick="toggleRM('descDE','rmDE','DE')">Mehr lesen ▼</button>
+        </div>
+
+        <!-- ENGLISH -->
+        <div class="desc-block">
+          <h3>In English</h3>
+          <div class="desc-collapsed" id="descEN">
+            <p>Imagine...</p>
+            <p>An entire civilization lived for thousands of years... and wrote all its secrets in a language that no one could understand.</p>
+            <p>For many years, the world stood before the Egyptian monuments...</p>
+            <p>admired them...</p>
+            <p>but could not comprehend them.</p>
+            <p>Until one day...</p>
+            <p>the Rosetta Stone was discovered.</p>
+            <p>A small stone... that changed everything.</p>
+            <p>The stone was written in three languages...</p>
+            <p>and that was the key.</p>
+            <p>Thus, Jean-François Champollion was able to decipher the hieroglyphs... and for the first time, the civilization began to speak.</p>
+            <p>And today...</p>
+            <p>when we enter the Egyptian Museum...</p>
+            <p>we don't just see statues.</p>
+            <p>We hear the stories of people who lived thousands of years ago.</p>
+            <p>Even as you approach the Egyptian Museum...</p>
+            <p>you feel that it is no ordinary building...</p>
+            <p>but the beginning of a story.</p>
+            <p>Step by step...</p>
+            <p>time seems to slow down...</p>
+            <p>the sounds disappear...</p>
+            <p>as if the place is asking you to listen.</p>
+            <p>Every statue here is not a silent stone.</p>
+            <p>Every piece tells of a person.</p>
+            <p>A king with a dream...</p>
+            <p>or a simple worker who built a glory he would never see.</p>
+            <p>The museum doesn't just show a civilization...</p>
+            <p>it tells its story.</p>
+            <p>From the first moment in the life of an ancient Egyptian...</p>
+            <p>to their belief in the afterlife.</p>
+            <p>And perhaps...</p>
+            <p>that was only the beginning... not the end.</p>
+          </div>
+          <button class="read-more-btn" id="rmEN" onclick="toggleRM('descEN','rmEN','EN')">Read more ▼</button>
         </div>
 
         <!-- ARABIC -->
@@ -796,8 +836,7 @@
             <p>ولعلّ...</p>
             <p>هذا لم يكن سوى البداية... لا النهاية.</p>
           </div>
-          <button class="read-more-btn" id="rmAR" onclick="toggleRM('descAR','rmAR',true)" style="direction:rtl;">اقرأ
-            المزيد ▼</button>
+          <button class="read-more-btn" id="rmAR" onclick="toggleRM('descAR','rmAR','AR')" style="direction:rtl;">اقرأ المزيد ▼</button>
         </div>
 
       </div>
@@ -844,16 +883,16 @@
       document.querySelectorAll('.reveal').forEach((el, i) => { io.observe(el); el.style.transitionDelay = i * .08 + 's'; });
     });
 
-    function toggleRM(blockId, btnId, isAR) {
+    function toggleRM(blockId, btnId, lang) {
       const block = document.getElementById(blockId);
       const btn = document.getElementById(btnId);
       if (block.classList.contains('expanded')) {
         block.classList.remove('expanded');
-        btn.textContent = isAR ? 'اقرأ المزيد ▼' : 'Mehr lesen ▼';
+        btn.textContent = lang === 'AR' ? 'اقرأ المزيد ▼' : lang === 'EN' ? 'Read more ▼' : 'Mehr lesen ▼';
         block.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
         block.classList.add('expanded');
-        btn.textContent = isAR ? 'أقل ▲' : 'Weniger ▲';
+        btn.textContent = lang === 'AR' ? 'أقل ▲' : lang === 'EN' ? 'Show less ▲' : 'Weniger ▲';
       }
     }
     // Fix for browser back/forward navigation brown screen issue

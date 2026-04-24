@@ -374,7 +374,7 @@
 
     .desc-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 28px;
     }
 
@@ -736,7 +736,39 @@
             <p>Trotzdem ist er heute einer der bekanntesten Pharaonen.</p>
             <p>Nicht wegen seiner Taten... sondern wegen seines Grabes.</p>
           </div>
-          <button class="read-more-btn" id="rmDE" onclick="toggleRM('descDE','rmDE',false)">Mehr lesen ▼</button>
+          <button class="read-more-btn" id="rmDE" onclick="toggleRM('descDE','rmDE','DE')">Mehr lesen ▼</button>
+        </div>
+
+        <!-- ENGLISH -->
+        <div class="desc-block">
+          <h3>In English</h3>
+          <div class="desc-collapsed" id="descEN">
+            <p>Why is this golden mask in the museum?</p>
+            <p>Who was Tutankhamun really?</p>
+            <p>And why is his tomb so famous?</p>
+            <p>This is the famous mask of Tutankhamun.</p>
+            <p>"It was made over 3000 years ago in ancient Egypt."</p>
+            <p>This mask covered the face of the young pharaoh after his death.</p>
+            <p>The ancient Egyptians believed in life after death.</p>
+            <p>That is why the mask was not just beautiful, but also very important.</p>
+            <p>It is made of pure gold and decorated with precious stones.</p>
+            <p>The symbols on it - the cobra and the vulture stand for protection and power.</p>
+            <br>
+            <h4 style="font-family:'Cinzel',serif;color:#E8B030;font-size:0.8rem;letter-spacing:0.1em;border-bottom:1px solid rgba(160,110,30,0.3);margin-bottom:8px;padding-bottom:4px;">Discovery</h4>
+            <p>"In 1922, the tomb of Tutankhamun was discovered."</p>
+            <p>An Egyptian boy named Hussein Abdel-Rassoul found the first step in the ground.</p>
+            <p>This led to the discovery of the tomb.</p>
+            <p>Later, the archaeologist Howard Carter worked on the excavation.</p>
+            <p>And there the famous mask was found.</p>
+            <br>
+            <h4 style="font-family:'Cinzel',serif;color:#E8B030;font-size:0.8rem;letter-spacing:0.1em;border-bottom:1px solid rgba(160,110,30,0.3);margin-bottom:8px;padding-bottom:4px;">About the King</h4>
+            <p>Tutankhamun became king as a child - at about 9 years old.</p>
+            <p>He did not rule for long and died very young.</p>
+            <p>Probably at the age of around 18.</p>
+            <p>Nevertheless, today he is one of the most famous pharaohs.</p>
+            <p>Not because of his deeds... but because of his tomb.</p>
+          </div>
+          <button class="read-more-btn" id="rmEN" onclick="toggleRM('descEN','rmEN','EN')">Read more ▼</button>
         </div>
 
         <!-- ARABIC -->
@@ -772,8 +804,7 @@
             <p>ومع كده هو دلوقتي واحد من أشهر الفراعنة</p>
             <p>مش بسبب إنجازاته... لكن بسبب مقبرته.</p>
           </div>
-          <button class="read-more-btn" id="rmAR" onclick="toggleRM('descAR','rmAR',true)" style="direction:rtl;">اقرأ
-            المزيد ▼</button>
+          <button class="read-more-btn" id="rmAR" onclick="toggleRM('descAR','rmAR','AR')" style="direction:rtl;">اقرأ المزيد ▼</button>
         </div>
 
       </div>
@@ -817,16 +848,16 @@
       document.querySelectorAll('.reveal').forEach((el, i) => { io.observe(el); el.style.transitionDelay = i * .08 + 's'; });
     });
 
-    function toggleRM(blockId, btnId, isAR) {
+    function toggleRM(blockId, btnId, lang) {
       const block = document.getElementById(blockId);
       const btn = document.getElementById(btnId);
       if (block.classList.contains('expanded')) {
         block.classList.remove('expanded');
-        btn.textContent = isAR ? 'اقرأ المزيد ▼' : 'Mehr lesen ▼';
+        btn.textContent = lang === 'AR' ? 'اقرأ المزيد ▼' : lang === 'EN' ? 'Read more ▼' : 'Mehr lesen ▼';
         block.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
         block.classList.add('expanded');
-        btn.textContent = isAR ? 'أقل ▲' : 'Weniger ▲';
+        btn.textContent = lang === 'AR' ? 'أقل ▲' : lang === 'EN' ? 'Show less ▲' : 'Weniger ▲';
       }
     }
     // Fix for browser back/forward navigation brown screen issue
