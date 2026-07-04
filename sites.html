@@ -773,6 +773,7 @@
       { id: 'gem', name: 'Grosses Ägyptisches Museum', en: 'Grand Egyptian Museum', ar: 'المتحف المصري الكبير', img: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/bc9840210787689.671792986a1e8.jpg' },
       { id: 'tut', name: 'Maske des Tutanchamun', en: 'Mask of Tutankhamun', ar: 'قناع توت عنخ آمون', img: 'https://www.thamesandhudson.com/cdn/shop/articles/Listing-image_36bbdc30-2bfa-411f-a2f1-371ae01ae64b.jpg?v=1739201137&width=1500' },
       { id: 'ramses', name: 'Ramses II. — Der Große Pharao', en: 'Ramses II — The Great Pharaoh', ar: 'رمسيس الثاني — الفرعون العظيم', img: 'https://res.cloudinary.com/dhanjaap5/image/upload/v1781219151/GrandEgyptianMuseum__aautjw.jpg' },
+      { id: 'ball', name: 'Wer spielte schon vor 3.000 Jahren mit einem Ball?', en: 'Who played with a ball 3,000 years ago?', ar: 'من لعب بالكرة منذ ٣٠٠٠ سنة؟', img: 'https://res.cloudinary.com/dhanjaap5/image/upload/v1783194147/IMG-20260629-WA0002_bkv2k7.jpg' },
     ];
     const DEITIES = [
       { g: '☀', name: 'Ra', en: 'Ra', ar: 'رع', role: 'Gott der Sonne', roleAr: 'إله الشمس' },
@@ -839,7 +840,7 @@
     function goTo(id) {
       localStorage.setItem('selectedSite', id);
       document.body.style.cssText += 'opacity:0;transition:opacity .5s';
-      const pageMap = { 'gem': 'site-detail.html', 'tut': 'tut.html', 'ramses': 'ramses.html' };
+      const pageMap = { 'gem': 'site-detail.html', 'tut': 'tut.html', 'ramses': 'ramses.html', 'ball': 'ball.html' };
       setTimeout(() => window.location.href = pageMap[id] || id + '.html', 520);
     }
     // Fix for browser back button (BF Cache) brown screen issue
